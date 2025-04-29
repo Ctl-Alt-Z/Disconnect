@@ -4,9 +4,10 @@
 
 ## Team
 
-  - teamMember: **Scrum Master, Developer**
-  - teamMember: **Developer**
-  - teamMember: **Developer**
+  - Luis Abreu: **Scrum Master, Developer**
+  - Avionte Williams: **Developer**
+  - Taylor Marshall: **Developer**
+  - Jose Correa: **Developer**
 
 ## Table of Contents
 - [Getting Started](#getting-started)
