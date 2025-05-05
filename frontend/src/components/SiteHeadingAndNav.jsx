@@ -13,7 +13,7 @@ export default function SiteHeadingAndNav() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/">Main</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
 
           {currentUser ? (
@@ -39,6 +39,12 @@ export default function SiteHeadingAndNav() {
               </li>
               <li>
                 <NavLink to="/sign-up">Sign Up</NavLink>
+              </li>
+              <li>
+                <NavLink to="/preferences">Preferences</NavLink>
+              </li>
+              <li>
+                <NavLink to="/MainPage">Journal Entry</NavLink>
               </li>
             </>
           )}
