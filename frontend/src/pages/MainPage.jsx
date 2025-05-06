@@ -31,7 +31,6 @@ export default function MainPage() {
 
       <form>
         <div>
-          3w
           <label>GOAL 1:</label>
           <textarea
             value={textarea}
