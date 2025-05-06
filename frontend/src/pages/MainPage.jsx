@@ -31,12 +31,31 @@ export default function MainPage() {
 
       <form>
         <div>
-          <label>GOAL 1:</label>
-          <textarea
+          <label>Set Daily Goal :</label>
+          <select value={textarea} onChange={handleChange}>
+            <option>1 hr</option>
+            <option>2 hrs</option>
+            <option>3 hrs</option>
+            <option>4 hrs</option>
+            <option>5 hrs</option>
+            <option>6 hrs</option>
+            <option>7 hrs</option>
+            <option>8 hrs</option>
+            <option>9 hrs</option>
+            <option>10 hrs</option>
+            <option>11 hrs</option>
+            <option>12 hrs</option>
+          </select>
+          <label>
+            {" "}
+            Goal expection:
+            <input type="text" />
+          </label>
+          {/* <textarea
             value={textarea}
             onChange={handleChange}
             required
-          ></textarea>
+          ></textarea> */}
           <div>
             <label>GOAL 2:</label>
             <textarea value={goalTwo} onChange={handleChangeTwo}></textarea>
