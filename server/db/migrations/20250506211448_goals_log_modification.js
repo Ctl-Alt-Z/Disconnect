@@ -6,6 +6,7 @@ exports.up = function (knex) {
   return knex.schema
     .alterTable("logs", (table) => {
       table.dropColumn("goals_id");
+      table.dropColumn("posts_id");
     })
     .alterTable("goals", (table) => {
       table.integer("logs_id").notNullable();
@@ -25,5 +26,9 @@ exports.down = function (knex) {
     .alterTable("logs", (table) => {
       table.integer("goals_id").notNullable();
       table.foreign("goals_id").references("id").inTable("goals");
+    })
+    .alterTable("logs", (table) => {
+      table.integer("posts_id").notNullable();
+      table.foreign("posts_id").references("id").inTable("posts");
     });
 };
