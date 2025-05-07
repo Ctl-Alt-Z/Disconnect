@@ -3,12 +3,15 @@ export default function PreferencesPage() {
     <>
       <div id="android">
         <h1>Android Screen Time </h1>
-        <p>instructions</p>
+        <p>1. Navigate to Setting </p>
+        <p>2. Digital Wellbeing & Parental Controls</p>
+        <p>3. Dashboard</p>
       </div>
 
       <div id="iphone">
         <h1>IPhone Screen Time</h1>
-        <p>instructions</p>
+        <p>1. Navigate to Settings</p>
+        <p>2. Screen Time</p>
       </div>
 
       <div id="timeLog">

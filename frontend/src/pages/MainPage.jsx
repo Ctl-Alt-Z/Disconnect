@@ -56,14 +56,14 @@ export default function MainPage() {
             onChange={handleChange}
             required
           ></textarea> */}
-          <div>
+          {/* <div>
             <label>GOAL 2:</label>
             <textarea value={goalTwo} onChange={handleChangeTwo}></textarea>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <label>GOAL 3:</label>
             <textarea value={goalThree} onChange={handleChangeThree}></textarea>
-          </div>
+          </div> */}
         </div>
         <button>post</button>
       </form>
