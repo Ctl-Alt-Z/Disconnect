@@ -14,7 +14,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 8,
@@ -22,7 +21,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 8,
@@ -30,7 +28,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 5,
@@ -38,7 +35,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 3,
@@ -46,7 +42,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 8,
@@ -54,7 +49,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 8,
@@ -62,7 +56,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 8,
@@ -70,7 +63,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 5,
@@ -78,7 +70,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 		{
 			screentime: 3,
@@ -86,7 +77,6 @@ exports.seed = async function (knex) {
 			date: '2024-07-08',
 			entry:
 				'I was able to complete my goal from the previous day I feel great',
-			posts_id: 3,
 		},
 	]);
 };
