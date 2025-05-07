@@ -13,15 +13,21 @@ export default function SiteHeadingAndNav() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/">Main</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
 
           {currentUser ? (
             <>
               <li>
-                <NavLink to="/users" end={true}>
+                {/* <NavLink to="/users" end={true}>
                   Users
-                </NavLink>
+                </NavLink> */}
+              </li>
+              <li>
+                <NavLink to="/preferences">Instruction</NavLink>
+              </li>
+              <li>
+                <NavLink to="/MainPage">Journal Entry</NavLink>
               </li>
               <li>
                 <NavLink to={`/users/${currentUser.id}`}>
