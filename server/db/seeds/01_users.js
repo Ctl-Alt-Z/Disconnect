@@ -4,6 +4,10 @@ const User = require('../../models/User');
  * @returns { Promise<void> }
  */
 exports.seed = async (knex) => {
+	// await knex('favorites').del();
+	await knex('goals').del();
+	await knex('logs').del();
+	await knex('posts').del();
 	await knex('users').del();
 
 	// resets user_id to 1 each time the seed file is executed.
