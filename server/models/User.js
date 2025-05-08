@@ -24,7 +24,7 @@ class User {
   // Hashes the given password and then creates a new user
   // in the users table. Returns the newly created user, using
   // the constructor to hide the passwordHash.
-  static async create(username, first, last, email, password) {
+  static async create(username, password, first, last, email) {
     // hash the plain-text password using bcrypt before storing it in the database
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
 
