@@ -15,6 +15,7 @@ const logErrors = require('./middleware/logErrors');
 // controller imports
 const authControllers = require('./controllers/authControllers');
 const userControllers = require('./controllers/userControllers');
+const logControllers = require('./controllers/logControllers');
 const app = express();
 
 // middleware
@@ -43,14 +44,20 @@ app.get('/api/users/:id', checkAuthentication, userControllers.showUser);
 app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
 
 ///////////////////////////////
+// Log Routes
+///////////////////////////////
+
+app.post('/api/logs/:id', logControllers.logScreentime);
+
+///////////////////////////////
 // Fallback Routes
 ///////////////////////////////
 
 // Requests meant for the API will be sent along to the router.
 // For all other requests, send back the index.html file in the dist folder.
 app.get('*', (req, res, next) => {
-  if (req.originalUrl.startsWith('/api')) return next();
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+	if (req.originalUrl.startsWith('/api')) return next();
+	res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 app.use(logErrors);
@@ -61,5 +68,5 @@ app.use(logErrors);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+	console.log(`Server running at http://localhost:${port}/`);
 });
