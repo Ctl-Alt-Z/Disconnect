@@ -8,7 +8,7 @@ export default function SiteHeadingAndNav() {
   return (
     <header>
       <a id="logo" href="/">
-        Disconnect
+        DISCONNECT
       </a>
       <nav>
         <ul>
