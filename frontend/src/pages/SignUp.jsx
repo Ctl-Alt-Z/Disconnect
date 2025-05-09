@@ -74,6 +74,16 @@ export default function SignUpPage() {
         aria-labelledby="create-heading"
       >
         <h2 id="create-heading">Create New User</h2>
+        <label htmlFor="username">Username</label>
+        <input
+          autoComplete="off"
+          type="text"
+          id="username"
+          name="username"
+          onChange={handleChange}
+          value={username}
+          required
+        />
         <label htmlFor="first">First Name</label>
         <input
           autoComplete="off"
@@ -92,16 +102,6 @@ export default function SignUpPage() {
           name="last"
           onChange={handleChange}
           value={last}
-          required
-        />
-        <label htmlFor="username">Username</label>
-        <input
-          autoComplete="off"
-          type="text"
-          id="username"
-          name="username"
-          onChange={handleChange}
-          value={username}
           required
         />
 

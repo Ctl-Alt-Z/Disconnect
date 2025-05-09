@@ -8,7 +8,7 @@ export default function SiteHeadingAndNav() {
   return (
     <header>
       <a id="logo" href="/">
-        React/Express Auth
+        DISCONNECT
       </a>
       <nav>
         <ul>
