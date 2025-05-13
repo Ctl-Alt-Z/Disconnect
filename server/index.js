@@ -47,7 +47,12 @@ app.patch('/api/users/:id', checkAuthentication, userControllers.updateUser);
 // Log Routes
 ///////////////////////////////
 
-app.post('/api/logs/:id', logControllers.logScreentime);
+app.post('/api/logs/', logControllers.logScreentime);
+app.patch('/api/logs/', logControllers.updateLog);
+app.get('/api/logs/today', logControllers.getEntry);
+app.get('/api/logs/log-status', logControllers.checkLogStatus);
+// app.delete('/api/logs/:id', logControllers.deleteLog);
+// app.get('/api/logs/today, logControllers.getTodayLog)
 
 ///////////////////////////////
 // Fallback Routes
