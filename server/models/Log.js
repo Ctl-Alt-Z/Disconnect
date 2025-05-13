@@ -19,11 +19,17 @@ class Log {
 		const rawLogData = result.rows[0];
 		return new Log(rawLogData);
 	}
-	static async update(entry, userId) {
-		const query = `UPDATE logs SET entry = ? WHERE user_id = ? RETURNING *`;
-		const result = await knex.raw(query, [entry, userId]);
+	static async update(entry, logId) {
+		const query = `UPDATE logs SET entry = ? WHERE id = ? RETURNING *`;
+		const result = await knex.raw(query, [entry, logId]);
 		const rawLogData = result.rows[0];
 		return new Log(rawLogData);
+	}
+	static async findByUserAndDate(userId, date) {
+		const query = `SELECT * FROM logs WHERE user_id = ? AND date = ? LIMIT 1`;
+		const result = await knex.raw(query, [userId, date]);
+		if (result.rows.length === 0) return null;
+		return new Log(result.rows[0]);
 	}
 }
 
