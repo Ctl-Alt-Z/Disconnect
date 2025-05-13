@@ -1,4 +1,4 @@
-const Post = require("../model/Post");
+const Post = require("../models/Post");
 
 // Get All Posts (Read)
 const servePosts = async (req, res) => {
@@ -9,7 +9,7 @@ const servePosts = async (req, res) => {
 // Get One Post (Read)
 const servePost = async (req, res) => {
   const { id } = req.params;
-  const post = await Post.find(Number(id));
+  const post = await Post.findById(Number(id));
 
   if (!post) {
     return res.status(404).send({
@@ -27,24 +27,25 @@ const serveAllPosts = async (req, res) => {
 
 // Create Post
 const createPost = async (req, res) => {
-  const { content, fellowId } = req.body;
-  if (!content || !fellowId) {
-    return res.status(400).send({ message: "Invalid content or fellowId" });
+  const { userId } = req.session;
+  const { message } = req.body;
+  if (!message || !userId) {
+    return res.status(400).send({ message: "Invalid message or userId" });
   }
 
-  const newPost = await Post.create(content, Number(fellowId));
+  const newPost = await Post.create(message, Number(userId));
   res.send(newPost);
 };
 // Update Post
 const updatePost = async (req, res) => {
-  const { content } = req.body;
+  const { message } = req.body;
 
-  if (!content) {
-    return res.status(400).send({ message: "Invalid content" });
+  if (!message) {
+    return res.status(400).send({ message: "Invalid message" });
   }
 
   const { id } = req.params;
-  const updatedPost = await Post.editContent(Number(id), content);
+  const updatedPost = await Post.editPost(Number(id), message);
 
   if (!updatedPost) {
     return res.status(404).send({
@@ -68,10 +69,10 @@ const deletePost = async (req, res) => {
 
   res.send({ message: `Post with id ${id} deleted successfully` });
 };
-// Get Posts by Fellow ID
-const servePostsByFellowId = async (req, res) => {
+// Get Posts by User ID
+const servePostsByUserId = async (req, res) => {
   const { id } = req.params;
-  const postsList = await Post.findPostsByFellowId(Number(id));
+  const postsList = await Post.findPostsByUserId(Number(id));
 
   if (!postsList || postsList.length === 0) {
     return res.status(404).send({
@@ -81,18 +82,18 @@ const servePostsByFellowId = async (req, res) => {
   res.send(postsList);
 };
 
-const deleteAllPostsByFellowId = async (req, res) => {
-  const { fellowId } = req.params;
-  const didDelete = await Post.deleteAllPostsByFellowId(Number(fellowId));
+const deleteAllPostsByUserId = async (req, res) => {
+  const { userId } = req.params;
+  const didDelete = await Post.deleteAllPostsByUserId(Number(userId));
 
   if (!didDelete) {
     return res.status(404).send({
-      message: `No posts found for fellow with id ${fellowId}`,
+      message: `No posts found for user with id ${userId}`,
     });
   }
 
   res.send({
-    message: `All posts for fellow with id ${fellowId} deleted successfully`,
+    message: `All posts for user with id ${userId} deleted successfully`,
   });
 };
 
@@ -103,6 +104,6 @@ module.exports = {
   createPost,
   updatePost,
   deletePost,
-  servePostsByFellowId,
-  deleteAllPostsByFellowId,
+  servePostsByUserId,
+  deleteAllPostsByUserId,
 };

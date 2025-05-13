@@ -1,13 +1,13 @@
 const knex = require("../db/knex");
 
 class Post {
-  static async create(content, fellowId) {
+  static async create(message, userId) {
     const query = `
-          INSERT INTO posts (id, post_content, fellow_id)
-          values (?, ?, ?)
+          INSERT INTO posts (message, user_id)
+          values (?, ?)
           RETURNING *
         `;
-    const { rows } = await knex.raw(query, [content, fellowId]);
+    const { rows } = await knex.raw(query, [message, userId]);
     return rows;
   }
 
@@ -30,25 +30,25 @@ class Post {
     return rows[0];
   }
 
-  static async findPostsByFellowId(fellowId) {
-    console.log("fellowId", fellowId);
+  static async findPostsByUserId(userId) {
+    console.log("userId", userId);
     const query = `
     SELECT *
     FROM posts
-    WHERE fellow_id = ?
+    WHERE user_id = ?
     `;
-    const { rows } = await knex.raw(query, [fellowId]);
+    const { rows } = await knex.raw(query, [userId]);
     return rows;
   }
 
-  static async editPost(id, newContent) {
+  static async editPost(id, newMessage) {
     const query = `
     UPDATE posts
-    SET content = ?
+    SET message = ?
     WHERE id = ?
     RETURNING *
   `;
-    const { rows } = await knex.raw(query, [newContent, id]);
+    const { rows } = await knex.raw(query, [newMessage, id]);
     return rows[0];
   }
 
@@ -62,13 +62,13 @@ class Post {
     return rows;
   }
 
-  static async deleteByFellowId(fellowId) {
+  static async deleteByUserId(userId) {
     const query = `
       DELETE 
       FROM posts
-      WHERE fellow_id = ?
+      WHERE user_id = ?
     `;
-    const { rows } = await knex.raw(query, [fellowId]);
+    const { rows } = await knex.raw(query, [userId]);
     return rows;
   }
 }
