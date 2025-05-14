@@ -131,9 +131,9 @@ export default function MainPage() {
         {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error */}
       </div>
 
-      {/* <div>
-				<p> stats</p>
-			</div> */}
+      <div>
+        <p> stats</p>
+      </div>
     </>
   );
 
