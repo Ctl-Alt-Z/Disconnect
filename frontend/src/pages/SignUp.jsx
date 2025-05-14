@@ -31,6 +31,11 @@ export default function SignUpPage() {
 				'Missing first name, last name, username, password, or email'
 			);
 		}
+		if (usernameError || passError || emailError) {
+			return setErrorText(
+				'Please fix the errors in the form before submitting.'
+			);
+		}
 
 		const [user, error] = await registerUser({
 			username,
