@@ -10,10 +10,13 @@ export default function SignUpPage() {
 	const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 	const [errorText, setErrorText] = useState('');
 	const [username, setUsername] = useState('');
+	const [usernameError, setUsernameError] = useState('');
 	const [password, setPassword] = useState('');
+	const [passError, setPassError] = useState('');
 	const [first, setFirst] = useState('');
 	const [last, setLast] = useState('');
 	const [email, setEmail] = useState('');
+	const [emailError, setEmailError] = useState('');
 
 	// users shouldn't be able to see the sign up page if they are already logged in.
 	// if the currentUser exists in the context, navigate the user to
@@ -23,10 +26,12 @@ export default function SignUpPage() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setErrorText('');
-		if (!username || !password || !email || !first || !last)
+		if (!username || !password || !email || !first || !last) {
 			return setErrorText(
 				'Missing first name, last name, username, password, or email'
 			);
+		}
+
 		const [user, error] = await registerUser({
 			username,
 			first,
@@ -44,9 +49,40 @@ export default function SignUpPage() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		if (name === 'username') setUsername(value);
-		if (name === 'password') setPassword(value);
-		if (name === 'email') setEmail(value);
+		if (name === 'username') {
+			const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+			if (!usernameRegex.test(value)) {
+				setUsernameError(
+					'Username must be at least 3 characters long and can only contain letters, numbers, and underscores.'
+				);
+			} else {
+				setUsernameError('');
+			}
+			setUsername(value);
+		}
+
+		if (name === 'password') {
+			const passwordRegex =
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+			if (!passwordRegex.test(value)) {
+				setPassError(
+					'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
+				);
+			} else {
+				setPassError('');
+			}
+			setPassword(value);
+		}
+
+		if (name === 'email') {
+			const emailRegex = /^[^\s@]+@[^\s@]+\.(com|org|edu|net|gov)$/i;
+			if (!emailRegex.test(value)) {
+				setEmailError('Invalid email format. Please enter a valid email.');
+			} else {
+				setEmailError('');
+			}
+			setEmail(value);
+		}
 		if (name === 'first') setFirst(value);
 		if (name === 'last') setLast(value);
 	};
@@ -84,7 +120,7 @@ export default function SignUpPage() {
 					value={first}
 					required
 				/>
-				<label htmlFor="username">Last Name</label>
+				<label htmlFor="last">Last Name</label>
 				<input
 					autoComplete="off"
 					type="text"
@@ -105,16 +141,19 @@ export default function SignUpPage() {
 					value={username}
 					required
 				/>
+				{usernameError && <p className="error">{usernameError}</p>}
+
 				<label htmlFor="email">Email</label>
 				<input
 					autoComplete="off"
-					type="text"
+					type="email"
 					id="email"
 					name="email"
 					onChange={handleChange}
 					value={email}
 					required
 				/>
+				{emailError && <p className="error">{emailError}</p>}
 
 				<label htmlFor="password">Password</label>
 				<input
@@ -126,6 +165,7 @@ export default function SignUpPage() {
 					value={password}
 					required
 				/>
+				{passError && <p className="error">{passError}</p>}
 				{/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
         <label htmlFor="password-confirm">Password Confirm</label>
         <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
@@ -133,7 +173,7 @@ export default function SignUpPage() {
 
 				<button type="submit">Sign Up Now!</button>
 			</form>
-			{!!errorText && <p>{errorText}</p>}
+			{!!errorText && <p className="error">{errorText}</p>}
 			<p>
 				Already have an account with us? <Link to="/login">Log in!</Link>
 			</p>
