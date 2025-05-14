@@ -1,11 +1,21 @@
-import { fetchHandler } from "../utils/fetchingUtils";
+import { fetchHandler } from '../utils/fetchingUtils';
 
 export const getAllPosts = async () => {
-  const [allPost, error] = await fetchHandler("api/posts/");
-  return [allPost, error];
+	try {
+		const [allPost, error] = await fetchHandler('api/posts/');
+		if (error) {
+			console.error('Error fetching posts:', error.message);
+			return [];
+		}
+		console.log(allPost);
+		return allPost;
+	} catch (error) {
+		console.error('Unexpected error fetching posts:', error.message);
+		return [];
+	}
 };
 
 export const posts = async (id) => {
-  const [post, error] = await fetchHandler(`api/post/${id}`);
-  return [post, error];
+	const [post, error] = await fetchHandler(`api/post/${id}`);
+	return [post, error];
 };
