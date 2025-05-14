@@ -1,0 +1,31 @@
+.teamPic {
+  display: flex;
+  flex-direction: row;
+}
+#luis {
+  height: 310px;
+  width: 210px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+
+#taylor {
+  width: 210px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+  /* object-fit: contain; */
+}
+#zae {
+  width: 210px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+#avo {
+  width: 210px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}

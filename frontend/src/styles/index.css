@@ -81,15 +81,3 @@ form > h2 {
 }
 
 /* About Us team page css */
-#teamPage {
-  background-color: aquamarine;
-}
-
-/* home page css */
-#homePage {
-  align-items: center;
-  background-color: rgb(171, 50, 123);
-}
-#hpHeader {
-  /* background-color: aquamarine; */
-}
