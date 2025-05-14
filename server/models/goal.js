@@ -1,0 +1,26 @@
+const knex = require("../db/knex");
+
+class Goal {
+  constructor({ num, string, logId }) {
+    this.num = num;
+    this.string = string;
+    this.logId = logId;
+  }
+
+  static async create(num, string, logId) {
+    const query = `INSERT INTO goals (goal_num, goal_string, logs_id)
+     VALUES (?, ?, ?) RETURNING *`;
+    const result = await knex.raw(query, [num, string, logId]);
+    const rawGoalData = result.rows[0];
+    return new Goal(rawGoalData);
+  }
+
+  static async findById(id) {
+    const query = `SELECT * FROM goals WHERE id = ?`;
+    const result = await knex.raw(query, [id]);
+    const rawGoalData = result.rows[0];
+    return rawGoalData ? new Goal(rawGoalData) : null;
+  }
+}
+
+module.exports = Goal;

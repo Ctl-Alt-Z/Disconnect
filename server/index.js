@@ -16,6 +16,7 @@ const logErrors = require("./middleware/logErrors");
 const authControllers = require("./controllers/authControllers");
 const userControllers = require("./controllers/userControllers");
 const logControllers = require("./controllers/logControllers");
+const goalControllers = require("./controllers/goalControllers");
 const app = express();
 
 const {
@@ -64,6 +65,11 @@ app.get("/api/logs/today", logControllers.getEntry);
 app.get("/api/logs/log-status", logControllers.checkLogStatus);
 // app.delete('/api/logs/:id', logControllers.deleteLog);
 // app.get('/api/logs/today, logControllers.getTodayLog)
+
+///////////////////////////////
+// Goal Routes
+///////////////////////////////
+app.post("/api/goals/", goalControllers.createGoal);
 
 ///////////////////////////////
 // Post Routes
