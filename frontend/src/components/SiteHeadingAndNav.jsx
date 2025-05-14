@@ -27,6 +27,9 @@ export default function SiteHeadingAndNav() {
 								<NavLink to="/MainPage">Journal Entry</NavLink>
 							</li>
 							<li>
+								<NavLink to="/feed">Feed</NavLink>
+							</li>
+							<li>
 								<NavLink to={`/users/${currentUser.id}`}>
 									{currentUser.username}
 								</NavLink>
