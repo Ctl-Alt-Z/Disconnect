@@ -12,7 +12,7 @@ import UserPage from "./pages/User";
 import TeamPage from "./pages/team";
 // import PreferencesPage from './pages/Preferences';
 import MainPage from "./pages/MainPage";
-import Feed from "./pages/PostPage";
+import PostPage from "./pages/PostPage";
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -37,9 +37,8 @@ export default function App() {
           <Route path="/users/:id" element={<UserPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/team" element={<TeamPage />} />
-          {/* <Route path="/preferences" element={<PreferencesPage />} /> */}
           <Route path="/mainpage" element={<MainPage />} />
-          <Route path="/postpage" element={<Feed />} />
+          <Route path="/feed" element={<PostPage />} />
         </Routes>
       </main>
     </>
