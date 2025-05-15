@@ -2,15 +2,7 @@ import { useState, useEffect } from "react";
 import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
-import { useState, useEffect } from "react";
-import Preferences from "../components/Preferences";
 import PostsModal from "../components/PostsModal";
-import {
-  updateEntry,
-  todaysEntry,
-  checkLogStatus,
-} from "../adapters/log-adapter";
-import GoalsForm from "../components/GoalForm";
 
 export default function MainPage() {
   const [entry, setEntry] = useState("");
