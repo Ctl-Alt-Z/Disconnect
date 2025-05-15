@@ -1,4 +1,6 @@
 import { useState } from "react";
+// const navigate = useNavigate();
+// const { id } = useParams();
 // must import and register data fro react chart
 import {
   Chart as ChartJS,
@@ -9,7 +11,15 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { getLog } from "../adapters/log-adapter";
+import { getGoals } from "../adapters/goal-adapter";
 import { Bar } from "react-chartjs-2";
+
+//  Testing get gaols adapter
+//put getGoals in useEffect , get info from main page
+// find how to get user id from prams
+console.log(getGoals(2));
+
 //import that data that you are pulling from on this line
 
 ChartJS.register(
@@ -23,11 +33,11 @@ ChartJS.register(
 //
 //adding the specifications of the chart
 const options = {
-  // responsive: true,
+  responsive: true,
   plugins: {
-    // legend: {
-    //   position: "top",
-    // },
+    legend: {
+      position: "top",
+    },
     title: {
       display: true,
       text: "Weekly Screen Time",
@@ -50,16 +60,17 @@ const statsData = {
   datasets: [
     {
       label: "Screen Time",
-      data: labels,
-      backgroundColor: "rgb(255, 99, 132,)",
+      // data: labels.map(() => getLog.datatype.number({ min: 0, max: 24 })),
+      backgroundColor: "rgb(255, 99, 132)",
     },
     {
       label: "Goal",
       data: labels,
-      // backgroundColor: "rgb (53, 162, 235,)",
+      backgroundColor: "rgb(53, 162, 235)",
     },
   ],
 };
+
 ///
 export default function StatsChart() {
   return (
