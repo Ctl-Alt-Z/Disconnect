@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Preferences from '../components/Preferences';
+import PostsModal from '../components/PostsModal';
 import {
 	updateEntry,
 	todaysEntry,
@@ -8,8 +9,9 @@ import {
 
 export default function MainPage() {
 	const [entry, setEntry] = useState('');
-	const [showModal, setShowModal] = useState(false); // Default to true to show the modal initially
+	const [showModal, setShowModal] = useState(false);
 	const [error, setError] = useState('');
+	const [postsModal, setPostsModal] = useState(false);
 
 	useEffect(() => {
 		const checkStatus = async () => {
@@ -42,16 +44,7 @@ export default function MainPage() {
 	const handleChange = (event) => {
 		setTextarea(event.target.value);
 	};
-	// // Goal box #2
-	// const [goalTwo, setGoalTwo] = useState("");
-	// const handleChangeTwo = (event) => {
-	//   setGoalTwo(event.target.value);
-	// };
-	// // Goal box #3
-	// const [goalThree, setGoalThree] = useState("");
-	// const handleChangeThree = (event) => {
-	//   setGoalThree(event.target.value);
-	// };
+
 	// journal entry box
 
 	const handleEntryUpdate = async (e) => {
@@ -66,7 +59,13 @@ export default function MainPage() {
 		console.log('Entry updated successfully:', ent);
 	};
 
-	// handle modal
+	const handlePostOpen = () => {
+		setPostsModal(true); // Open the modal when the button is clicked
+	};
+	const handlePostClose = () => {
+		setPostsModal(false); // Close the modal when the button is clicked
+	};
+
 	const handleClose = () => {
 		setShowModal(false); // Close the modal when the button is clicked
 	};
@@ -74,6 +73,7 @@ export default function MainPage() {
 	return (
 		<>
 			{showModal && <Preferences onClose={handleClose} />}
+			{postsModal && <PostsModal onClose={handlePostClose} />}
 			<div>
 				<p> timer</p>
 			</div>
@@ -100,19 +100,6 @@ export default function MainPage() {
 						Goal expection:
 						<input type="text" />
 					</label>
-					{/* <textarea
-            value={textarea}
-            onChange={handleChange}
-            required
-          ></textarea> */}
-					{/* <div>
-            <label>GOAL 2:</label>
-            <textarea value={goalTwo} onChange={handleChangeTwo}></textarea>
-          </div> */}
-					{/* <div>
-            <label>GOAL 3:</label>
-            <textarea value={goalThree} onChange={handleChangeThree}></textarea>
-          </div> */}
 				</div>
 				<button>post</button>
 			</form>
@@ -130,7 +117,7 @@ export default function MainPage() {
 				</form>
 				{error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error */}
 			</div>
-
+			<button onClick={handlePostOpen}>Replace with Icon</button>
 			<div>
 				<p> stats</p>
 			</div>
