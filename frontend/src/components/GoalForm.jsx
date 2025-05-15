@@ -46,7 +46,7 @@ export default function GoalsForm() {
         onChange={handleChange}
         aria-labelledby="goal-heading"
       >
-        <h2 id="goal-heading">Set Your Goal</h2>
+        <h2 id="goal-heading">Set Tomorrow's Goal</h2>
 
         <label htmlFor="goal">Hourly Goal</label>
         <input

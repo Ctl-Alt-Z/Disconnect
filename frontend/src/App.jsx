@@ -9,7 +9,7 @@ import UserContext from "./contexts/current-user-context";
 import { checkForLoggedInUser } from "./adapters/auth-adapter";
 import UsersPage from "./pages/Users";
 import UserPage from "./pages/User";
-import TeamPage from "./pages/team";
+import TeamPage from "./pages/Team";
 // import PreferencesPage from './pages/Preferences';
 import MainPage from "./pages/MainPage";
 import PostPage from "./pages/PostPage";

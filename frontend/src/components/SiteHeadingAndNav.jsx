@@ -33,7 +33,7 @@ export default function SiteHeadingAndNav() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/PostPage">Community Posts</NavLink>
+                <NavLink to="/Feed">Community Posts</NavLink>
               </li>
             </>
           ) : (
