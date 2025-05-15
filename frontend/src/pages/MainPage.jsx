@@ -3,7 +3,7 @@ import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
 import PostsModal from "../components/PostsModal";
-
+import StatsChart from "../components/Stats";
 export default function MainPage() {
   const [entry, setEntry] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -92,7 +92,9 @@ export default function MainPage() {
         {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error */}
       </div>
       <button onClick={handlePostOpen}>Replace with Icon</button>
-      <div>
+      <br></br>
+      <div id="stats">
+        <StatsChart />
         <p> stats</p>
       </div>
     </>
