@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
 import Preferences from "../components/Preferences";
-import {
-  updateEntry,
-  todaysEntry,
-  checkLogStatus,
-} from "../adapters/log-adapter";
+import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
 
 export default function MainPage() {
   const [entry, setEntry] = useState("");
   const [showModal, setShowModal] = useState(false); // Default to true to show the modal initially
   const [error, setError] = useState("");
+  const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
 
   useEffect(() => {
     const checkStatus = async () => {
       try {
-        const { logged } = await checkLogStatus();
-        setShowModal(!logged);
-        console.log("Log status:", logged);
+        const log = await getLog();
+        setShowModal(Object.keys(log).length === 0 ? true : false);
+        setLog(log);
+        console.log("Get Log result:", log);
       } catch (error) {
         console.error("Failed to check log status:", error.message);
       }
@@ -74,8 +72,8 @@ export default function MainPage() {
 
   return (
     <>
-      {showModal && <Preferences onClose={handleClose} />}
-      <GoalsForm />
+      {showModal && <Preferences setLog={setLog} onClose={handleClose} />}
+      <GoalsForm log={log} />
       <div>
         <p> timer</p>
       </div>
@@ -85,7 +83,7 @@ export default function MainPage() {
         <form onSubmit={handleEntryUpdate}>
           <label>Journal Entry:</label>
           <textarea
-            value={entry}
+            value={entry || ""}
             onChange={(e) => setEntry(e.target.value)}
             required
           ></textarea>

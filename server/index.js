@@ -62,14 +62,15 @@ app.patch("/api/users/:id", checkAuthentication, userControllers.updateUser);
 app.post("/api/logs/", logControllers.logScreentime);
 app.patch("/api/logs/", logControllers.updateLog);
 app.get("/api/logs/today", logControllers.getEntry);
-app.get("/api/logs/log-status", logControllers.checkLogStatus);
+app.get("/api/logs/log-status", logControllers.getLog);
 // app.delete('/api/logs/:id', logControllers.deleteLog);
 // app.get('/api/logs/today, logControllers.getTodayLog)
 
 ///////////////////////////////
 // Goal Routes
 ///////////////////////////////
-app.post("/api/goals/", goalControllers.createGoal);
+app.get("/api/goals/:userId", goalControllers.getGoalsByUserId);
+app.post("/api/goals", goalControllers.createGoal);
 
 ///////////////////////////////
 // Post Routes
