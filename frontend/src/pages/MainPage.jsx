@@ -2,11 +2,21 @@ import { useState, useEffect } from "react";
 import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
+import { useState, useEffect } from "react";
+import Preferences from "../components/Preferences";
+import PostsModal from "../components/PostsModal";
+import {
+  updateEntry,
+  todaysEntry,
+  checkLogStatus,
+} from "../adapters/log-adapter";
+import GoalsForm from "../components/GoalForm";
 
 export default function MainPage() {
   const [entry, setEntry] = useState("");
-  const [showModal, setShowModal] = useState(false); // Default to true to show the modal initially
+  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
+  const [postsModal, setPostsModal] = useState(false);
   const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
 
   useEffect(() => {
@@ -41,16 +51,7 @@ export default function MainPage() {
   const handleChange = (event) => {
     setTextarea(event.target.value);
   };
-  // // Goal box #2
-  // const [goalTwo, setGoalTwo] = useState("");
-  // const handleChangeTwo = (event) => {
-  //   setGoalTwo(event.target.value);
-  // };
-  // // Goal box #3
-  // const [goalThree, setGoalThree] = useState("");
-  // const handleChangeThree = (event) => {
-  //   setGoalThree(event.target.value);
-  // };
+
   // journal entry box
 
   const handleEntryUpdate = async (e) => {
@@ -65,7 +66,13 @@ export default function MainPage() {
     console.log("Entry updated successfully:", ent);
   };
 
-  // handle modal
+  const handlePostOpen = () => {
+    setPostsModal(true); // Open the modal when the button is clicked
+  };
+  const handlePostClose = () => {
+    setPostsModal(false); // Close the modal when the button is clicked
+  };
+
   const handleClose = () => {
     setShowModal(false); // Close the modal when the button is clicked
   };
@@ -73,6 +80,7 @@ export default function MainPage() {
   return (
     <>
       {showModal && <Preferences setLog={setLog} onClose={handleClose} />}
+      {postsModal && <PostsModal onClose={handlePostClose} />}
       <GoalsForm log={log} />
       <div>
         <p> timer</p>
@@ -91,7 +99,7 @@ export default function MainPage() {
         </form>
         {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error */}
       </div>
-
+      <button onClick={handlePostOpen}>Replace with Icon</button>
       <div>
         <p> stats</p>
       </div>
