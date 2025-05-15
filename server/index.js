@@ -13,16 +13,10 @@ const logRoutes = require('./middleware/logRoutes');
 const logErrors = require('./middleware/logErrors');
 
 // controller imports
-<<<<<<< HEAD
 const authControllers = require('./controllers/authControllers');
 const userControllers = require('./controllers/userControllers');
 const logControllers = require('./controllers/logControllers');
-=======
-const authControllers = require("./controllers/authControllers");
-const userControllers = require("./controllers/userControllers");
-const logControllers = require("./controllers/logControllers");
-const goalControllers = require("./controllers/goalControllers");
->>>>>>> main
+const goalControllers = require('./controllers/goalControllers');
 const app = express();
 
 const {
@@ -75,7 +69,7 @@ app.get('/api/logs/log-status', logControllers.checkLogStatus);
 ///////////////////////////////
 // Goal Routes
 ///////////////////////////////
-app.post("/api/goals/", goalControllers.createGoal);
+app.post('/api/goals/', goalControllers.createGoal);
 
 ///////////////////////////////
 // Post Routes
