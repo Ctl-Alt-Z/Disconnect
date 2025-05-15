@@ -38,9 +38,9 @@ export default function SignUpPage() {
 		}
 
 		const [user, error] = await registerUser({
-			username,
 			first,
 			last,
+			username,
 			email,
 			password,
 		});
@@ -54,6 +54,8 @@ export default function SignUpPage() {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
+		if (name === 'first') setFirst(value);
+		if (name === 'last') setLast(value);
 		if (name === 'username') {
 			const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
 			if (!usernameRegex.test(value)) {
@@ -88,8 +90,6 @@ export default function SignUpPage() {
 			}
 			setEmail(value);
 		}
-		if (name === 'first') setFirst(value);
-		if (name === 'last') setLast(value);
 	};
 
 	// to prevent the from changing pages unless its completed

@@ -1,14 +1,21 @@
 const knex = require('../db/knex');
 
 class Post {
+	constructor({ id, message, user_id }) {
+		this.id = id;
+		this.message = message;
+		this.user_id = user_id;
+	}
+
 	static async create(message, userId) {
 		const query = `
           INSERT INTO posts (message, user_id)
           values (?, ?)
           RETURNING *
         `;
-		const { rows } = await knex.raw(query, [message, userId]);
-		return rows;
+		const result = await knex.raw(query, [message, userId]);
+		const rawLogData = result.rows[0];
+		return rawLogData;
 	}
 
 	static async list() {

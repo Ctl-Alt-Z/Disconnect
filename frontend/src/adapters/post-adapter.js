@@ -1,4 +1,4 @@
-import { fetchHandler } from '../utils/fetchingUtils';
+import { fetchHandler, getPostOptions } from '../utils/fetchingUtils';
 
 export const getAllPosts = async () => {
 	try {
@@ -16,6 +16,15 @@ export const getAllPosts = async () => {
 };
 
 export const posts = async (id) => {
-	const [post, error] = await fetchHandler(`api/post/${id}`);
+	const [post, error] = await fetchHandler(`api/posts/${id}`);
 	return [post, error];
+};
+
+export const createPost = async (message) => {
+	const [post, err] = await fetchHandler(
+		'api/posts/',
+		getPostOptions({ message })
+	);
+	console.log('Post created:', post);
+	return post;
 };
