@@ -15,10 +15,11 @@ exports.createGoal = async (req, res) => {
 
   try {
     const newGoal = await Goal.create(goal_num, goal_string, logs_id);
-    res.status(201).send(newGoal);
+    console.log("created new goal: ", newGoal);
+    return res.status(201).send(newGoal);
   } catch (error) {
     console.error("Error creating goal:", error.message);
-    res.status(500).send({ message: "Internal Server Error." });
+    return res.status(500).send({ message: "Internal Server Error." });
   }
 };
 
@@ -39,6 +40,27 @@ exports.getGoalById = async (req, res) => {
     res.send(goal);
   } catch (error) {
     console.error("Error retrieving goal:", error.message);
+    res.status(500).send({ message: "Internal Server Error." });
+  }
+};
+
+/*
+GET /api/goals
+Returns all goals associated to this user
+*/
+exports.getGoalsByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const goals = await Goal.findByUserId(userId);
+
+    if (!goals) {
+      return res.status(404).send({ message: "This person has no goals." });
+    }
+
+    res.send(goals);
+  } catch (error) {
+    console.error("Error retrieving goals for this person:", error.message);
     res.status(500).send({ message: "Internal Server Error." });
   }
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createGoals } from "../adapters/goal-adapter";
 
-export default function GoalsForm() {
+export default function GoalsForm({ log }) {
   const [goalNum, setGoalNum] = useState(0);
   const [goalStr, setGoalStr] = useState("");
   const [errorText, setErrorText] = useState("");
@@ -23,12 +23,12 @@ export default function GoalsForm() {
     const newGoal = {
       goal_num: parseInt(goalNum),
       goal_string: goalStr,
-      logs_id: 1, // TODO: Replace with dynamic ID as needed
+      logs_id: log.id,
     };
 
     try {
-      const result = await createGoals(newGoal);
-      console.log(newGoal);
+      const [result, error] = await createGoals(newGoal);
+      console.log(result);
       console.log("Goal created:", result);
       setGoalNum("");
       setGoalStr("");
@@ -41,11 +41,7 @@ export default function GoalsForm() {
   return (
     <>
       <h1>Create a New Goal</h1>
-      <form
-        onSubmit={handleGoalSubmit}
-        onChange={handleChange}
-        aria-labelledby="goal-heading"
-      >
+      <form onSubmit={handleGoalSubmit} aria-labelledby="goal-heading">
         <h2 id="goal-heading">Set Your Goal</h2>
 
         <label htmlFor="goal">Hourly Goal</label>
@@ -55,6 +51,7 @@ export default function GoalsForm() {
           name="goal"
           autoComplete="off"
           value={goalNum}
+          onChange={handleChange}
           required
         />
 
@@ -65,6 +62,7 @@ export default function GoalsForm() {
           name="description"
           autoComplete="off"
           value={goalStr}
+          onChange={handleChange}
           required
         />
 
