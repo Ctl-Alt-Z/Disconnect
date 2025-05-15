@@ -15,7 +15,7 @@ export default function Feed() {
 
 	return (
 		<>
-			<h1>Posts</h1>
+			<h2>Posts</h2>
 			<div>
 				{allPosts.length > 0 ? (
 					allPosts.map((post, index) => (
