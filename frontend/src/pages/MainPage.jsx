@@ -74,6 +74,7 @@ export default function MainPage() {
       {showModal && <Preferences setLog={setLog} onClose={handleClose} />}
       {postsModal && <PostsModal onClose={handlePostClose} />}
       <GoalsForm log={log} />
+
       <div>
         <p> timer</p>
       </div>
