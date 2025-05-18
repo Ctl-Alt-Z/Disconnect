@@ -1,7 +1,6 @@
-import { useState } from "react";
-// const navigate = useNavigate();
-// const { id } = useParams();
-// must import and register data fro react chart
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+// must import and register data from react chart
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,11 +13,19 @@ import {
 import { getLog } from "../adapters/log-adapter";
 import { getGoals } from "../adapters/goal-adapter";
 import { Bar } from "react-chartjs-2";
-
+import { Await } from "react-router-dom";
+import CurrentUserContext from "../contexts/current-user-context";
 //  Testing get gaols adapter
 //put getGoals in useEffect , get info from main page
 // find how to get user id from prams
-console.log(getGoals(2));
+//labels.map(() => getGoals.datatype.number({ min: 0, max: 24 })),
+// console.log(getGoals(2));
+// console.log(log[0].goal_num);
+// console.log(log[0].screentime);
+// console.log(getGoals.goal_num(2));
+// console.log(getGoals.screentime(2));
+const goals = await getGoals(1);
+console.log(goals[0]);
 
 //import that data that you are pulling from on this line
 
@@ -30,7 +37,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-//
 //adding the specifications of the chart
 const options = {
   responsive: true,
@@ -55,24 +61,51 @@ const labels = [
   "Saturday",
 ];
 
-const statsData = {
-  labels,
-  datasets: [
-    {
-      label: "Screen Time",
-      // data: labels.map(() => getLog.datatype.number({ min: 0, max: 24 })),
-      backgroundColor: "rgb(255, 99, 132)",
-    },
-    {
-      label: "Goal",
-      data: labels,
-      backgroundColor: "rgb(53, 162, 235)",
-    },
-  ],
-};
-
 ///
 export default function StatsChart() {
+  // const { id } = useParams();
+  // const { currentUser } = useContext(CurrentUserContext);
+  // // const isCurrentUserProfile = currentUser && currentUser.id === Number(id);
+  // //
+  // // const [data, setData] = useState([]);
+  // const [log, setLog] = useState([]);
+  // const [goal, setGoal] = useState([]);
+  // // const [error, setError] = useState(null);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setGoal(goals);
+  //     } catch (err) {
+  //       console.error("Failed to fetch goal data:", err);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [id]);
+  // //
+  // const screenTimeData = Array.isArray(goal)
+  //   ? goal.map((g) => g.screentime)
+  //   : [goal?.screentime];
+
+  // const goalNumData = Array.isArray(goal)
+  //   ? goal.map((g) => g.goal_num)
+  //   : [goal?.goal_num];
+
+  const statsData = {
+    labels,
+    datasets: [
+      {
+        label: "Screen Time",
+        // data:
+        backgroundColor: "rgb(255, 99, 132)",
+      },
+      {
+        label: "Goal",
+        // data:
+        backgroundColor: "rgb(53, 162, 235)",
+      },
+    ],
+  };
   return (
     <>
       <div id="statsData">
