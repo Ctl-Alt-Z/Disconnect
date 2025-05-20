@@ -30,6 +30,13 @@ const {
   deleteAllPostsByUserId,
 } = require("./controllers/postControllers");
 
+const {
+  createFavorite,
+  deleteFavorite,
+  getFavoritesByUserId,
+  getFavoritesByPostId,
+} = require("./controllers/favControllers");
+
 // middleware
 app.use(handleCookieSessions); // adds a session property to each request representing the cookie
 app.use(logRoutes); // print information about each incoming request
@@ -83,6 +90,20 @@ app.post("/api/posts", checkAuthentication, createPost);
 app.delete("/api/posts/:id", checkAuthentication, deletePost);
 //app.get("/api/users/:id/posts", servePostsByUserId);
 // app.delete("/api/users/:id/posts", deleteAllPostsByUserId);
+
+///////////////////////////////
+// Favorites Routes
+///////////////////////////////
+
+app.post("/api/favorites", checkAuthentication, createFavorite);
+
+app.delete("/api/favorites/:id", checkAuthentication, deleteFavorite);
+app.get(
+  "/api/posts/:postId/favorites",
+  checkAuthentication,
+  getFavoritesByPostId
+);
+app.get("/api/users/:id/favorites", checkAuthentication, getFavoritesByUserId);
 
 ///////////////////////////////
 // Fallback Routes
