@@ -15,7 +15,9 @@ import { getLog } from "../adapters/log-adapter";
 import { getGoals } from "../adapters/goal-adapter";
 import { Bar } from "react-chartjs-2";
 import { Await } from "react-router-dom";
+// import currentUser from "../contexts/current-user-context";
 import CurrentUserContext from "../contexts/current-user-context";
+import CurrentUserContextProvider from "../contexts/CurrentUserContextProvider";
 //  Testing get gaols adapter
 //put getGoals in useEffect , get info from main page
 // find how to get user id from prams
@@ -25,8 +27,10 @@ import CurrentUserContext from "../contexts/current-user-context";
 // console.log(log[0].screentime);
 // console.log(getGoals.goal_num(2));
 // console.log(getGoals.screentime(2));
-const goals = await getGoals(2);
-console.log(goals[0]);
+// const { currentUser } = useContext(CurrentUserContext);
+// const goals = await getGoals(currentUser.id);
+// console.log("this is the id", currentUser.id);
+// console.log(goals[0]);
 
 //import that data that you are pulling from on this line
 
@@ -85,18 +89,21 @@ export default function StatsChart({ userId }) {
   const [log, setLog] = useState([]);
   const [goal, setGoal] = useState([]);
   const [error, setError] = useState(null);
+  const { currentUser } = useContext(CurrentUserContext);
+  // const goals = await getGoals(currentUser.id);
+  console.log("this is the id", currentUser);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const goal = await getGoals(userId);
-        setGoal(goals);
+        const goal = await getGoals(Number(currentUser.id));
+        setGoal(goal);
       } catch (err) {
         console.error("Failed to fetch goal data:", err);
       }
     };
 
     fetchData();
-  }, []);
+  }, [currentUser]);
   // //
   const screenTimeData = Array.isArray(goal)
     ? goal.map((g) => g.screentime)

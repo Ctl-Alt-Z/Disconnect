@@ -14,7 +14,7 @@ export const getGoals = async (id) => {
       console.error("Error fetching stats:", error.message);
       return [];
     }
-    // console.log(allGoals);
+    console.log(allGoals);
     return allGoals;
   } catch (error) {
     console.error("Unexpected error fetching stats:", error.message);

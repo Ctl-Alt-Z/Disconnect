@@ -7,14 +7,14 @@ export default function CountdownTimer() {
   const [disableWebsite, setDisableWebsite] = useState(false);
   const [timer, setTimer] = useState();
   const navigate = useNavigate();
-  const { setCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
 
-  console.log(CurrentUserContext);
+  // console.log(currentUser);
   useEffect(() => {
     const timer = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
-        console.log(seconds);
+        // console.log(seconds);
       } else {
         clearInterval(timer);
         setCurrentUser(null); //log out the user
