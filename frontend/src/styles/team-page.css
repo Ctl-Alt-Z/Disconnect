@@ -1,0 +1,87 @@
+.about-parent {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 40px;
+}
+.about-title {
+	font-size: var(--font-5xl);
+	font-weight: 700;
+	color: #000000;
+}
+
+.about-title:hover {
+	color: var(--accent);
+	cursor: default;
+}
+
+.border {
+	background-color: #449c9b; /* your desired background */
+	padding: 20px; /* space around the image */
+	border-radius: 12px; /* optional: rounded corners */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	width: fit-content; /* wraps tightly around the image */
+	margin: 50px; /* center it horizontally */
+}
+
+.border img {
+	width: 200px; /* set your desired width */
+	height: 250px; /* set your desired height */
+	border-radius: 12px; /* optional: rounded corners for the image */
+}
+
+.border:hover {
+	background-color: rgba(0, 0, 0, 0.9); /* dim the background */
+	transition: background-color 0.3s ease; /* smooth transition */
+}
+
+.border img:hover {
+	transform: scale(1.05); /* zoom effect */
+	backdrop-filter: blur(8px); /* optional: blur effect */
+	opacity: 0.4; /* optional: change opacity on hover */
+}
+
+.border img:hover {
+	transform: scale(1.05); /* zoom effect */
+	filter: blur(4px); /* blur effect */
+	opacity: 0.7; /* dim the image */
+}
+
+/* Name overlay styles */
+.name {
+	position: absolute; /* overlay on top of the image */
+	color: white; /* text color */
+	font-size: 1.5rem; /* adjust font size */
+	font-weight: bold; /* make the text bold */
+	text-align: center; /* center the text */
+	opacity: 0; /* hidden by default */
+	transition: opacity 0.3s ease; /* smooth fade-in effect */
+	pointer-events: none; /* prevent interaction with the text */
+}
+
+/* Show the name on hover */
+.border:hover .name {
+	opacity: 1; /* make the name visible */
+}
+
+.border a {
+	position: relative; /* Position the link relative to the border */
+	display: flex; /* Allow the link to wrap the image and name */
+	justify-content: center;
+	align-items: center;
+	text-decoration: none; /* Remove underline from the link */
+	color: inherit; /* Inherit text color */
+	width: 100%; /* Ensure the link covers the full container */
+	height: 100%;
+}
+
+.our-mission {
+	display: flex;
+	justify-content: center;
+	font-family: 'intrument serif';
+	font-size: var(--font-2xl);
+}

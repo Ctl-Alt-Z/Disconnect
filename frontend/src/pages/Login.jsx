@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { logUserIn } from '../adapters/auth-adapter';
 import CurrentUserContext from '../contexts/current-user-context';
+
+import '../styles/login-page.css';
 
 export default function LoginPage() {
 	const navigate = useNavigate();
@@ -27,32 +29,52 @@ export default function LoginPage() {
 
 	return (
 		<>
-			<h1>Login</h1>
-			<form onSubmit={handleSubmit} aria-labelledby="login-heading">
-				<h2 id="login-heading">Log back in!</h2>
-				<label htmlFor="username">Username</label>
-				<input
-					type="text"
-					autoComplete="username"
-					id="username"
-					name="username"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
-				/>
+			<div className="parent">
+				<div className="login-sheet">
+					<h1 className="title">Login</h1>
+					<form
+						className="login-form"
+						onSubmit={handleSubmit}
+						aria-labelledby="login-heading"
+					>
+						{/* <h2 id="login-heading">Log back in!</h2> */}
+						{/* <label htmlFor="username">Username</label> */}
+						<input
+							className="input"
+							type="text"
+							autoComplete="username"
+							id="username"
+							name="username"
+							value={username}
+							placeholder="Username"
+							onChange={(e) => setUsername(e.target.value)}
+						/>
 
-				<label htmlFor="password">Password</label>
-				<input
-					type="password"
-					autoComplete="current-password"
-					id="password"
-					name="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
+						{/* <label htmlFor="password">Password</label> */}
+						<input
+							className="input"
+							type="password"
+							autoComplete="current-password"
+							id="password"
+							name="password"
+							value={password}
+							placeholder="Password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
 
-				<button>Log in!</button>
-			</form>
-			{!!errorText && <p>{errorText}</p>}
+						<button className="login" type="submit">
+							Log in!
+						</button>
+					</form>
+					{!!errorText && <p>{errorText}</p>}
+					<p className="signup-option">
+						Don't have an account?{' '}
+						<Link className="sign-link" to="/sign-up">
+							Sign up here!
+						</Link>
+					</p>
+				</div>
+			</div>
 		</>
 	);
 }

@@ -2,6 +2,7 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import CurrentUserContext from '../contexts/current-user-context';
 import { registerUser } from '../adapters/auth-adapter';
+import '../styles/signup-page.css';
 
 // Controlling the sign up form is a good idea because we want to add (eventually)
 // more validation and provide real time feedback to the user about usernames and passwords
@@ -108,80 +109,96 @@ export default function SignUpPage() {
 
 	return (
 		<>
-			<h1>Sign Up</h1>
-			<form
-				onSubmit={handleSubmit}
-				onChange={handleChange}
-				aria-labelledby="create-heading"
-			>
-				<h2 id="create-heading">Create New User</h2>
-				<label htmlFor="first">First Name</label>
-				<input
-					autoComplete="off"
-					type="text"
-					id="first"
-					name="first"
-					onChange={handleChange}
-					value={first}
-					required
-				/>
-				<label htmlFor="last">Last Name</label>
-				<input
-					autoComplete="off"
-					type="text"
-					id="last"
-					name="last"
-					onChange={handleChange}
-					value={last}
-					required
-				/>
+			<div className="parent">
+				<div className="signup-sheet">
+					<h1 className="title">Sign Up</h1>
+					<form
+						className="signup-form"
+						onSubmit={handleSubmit}
+						onChange={handleChange}
+						aria-labelledby="create-heading"
+					>
+						{/* <h2 id="create-heading">Create New User</h2> */}
+						{/* <label htmlFor="first">First Name</label> */}
+						<input
+							className="input"
+							autoComplete="off"
+							type="text"
+							id="first"
+							name="first"
+							onChange={handleChange}
+							value={first}
+							placeholder="First Name"
+							required
+						/>
+						{/* <label htmlFor="last">Last Name</label> */}
+						<input
+							autoComplete="off"
+							type="text"
+							id="last"
+							name="last"
+							onChange={handleChange}
+							value={last}
+							placeholder="Last Name"
+							required
+						/>
 
-				<label htmlFor="username">Username</label>
-				<input
-					autoComplete="off"
-					type="text"
-					id="username"
-					name="username"
-					onChange={handleChange}
-					value={username}
-					required
-				/>
-				{usernameError && <p className="error">{usernameError}</p>}
+						{/* <label htmlFor="username">Username</label> */}
+						<input
+							autoComplete="off"
+							type="text"
+							id="username"
+							name="username"
+							onChange={handleChange}
+							value={username}
+							placeholder="Username"
+							required
+						/>
+						{usernameError && <p className="error">{usernameError}</p>}
 
-				<label htmlFor="email">Email</label>
-				<input
-					autoComplete="off"
-					type="email"
-					id="email"
-					name="email"
-					onChange={handleChange}
-					value={email}
-					required
-				/>
-				{emailError && <p className="error">{emailError}</p>}
+						{/* <label htmlFor="email">Email</label> */}
+						<input
+							autoComplete="off"
+							type="email"
+							id="email"
+							name="email"
+							onChange={handleChange}
+							value={email}
+							placeholder="Email"
+							required
+						/>
 
-				<label htmlFor="password">Password</label>
-				<input
-					autoComplete="off"
-					type="password"
-					id="password"
-					name="password"
-					onChange={handleChange}
-					value={password}
-					required
-				/>
-				{passError && <p className="error">{passError}</p>}
-				{/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
+						{/* <label htmlFor="password">Password</label> */}
+						{emailError && <p className="error">{emailError}</p>}
+						<input
+							autoComplete="off"
+							type="password"
+							id="password"
+							name="password"
+							onChange={handleChange}
+							value={password}
+							placeholder="Password"
+							required
+						/>
+						{passError && <p className="error">{passError}</p>}
+						{/* In reality, we'd want a LOT more validation on signup, so add more things if you have time
         <label htmlFor="password-confirm">Password Confirm</label>
         <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
       */}
 
-				<button type="submit">Sign Up Now!</button>
-			</form>
-			{!!errorText && <p className="error">{errorText}</p>}
-			<p>
-				Already have an account with us? <Link to="/login">Log in!</Link>
-			</p>
+						<button className="register" type="submit">
+							Sign Up Now!
+						</button>
+					</form>
+					{!!errorText && <p className="error">{errorText}</p>}
+					<p className="login-option">
+						Already have an account with us?{' '}
+						<Link className="log-link" to="/login">
+							Log in!
+						</Link>
+					</p>
+				</div>
+			</div>
 		</>
 	);
 }
