@@ -16,5 +16,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.4.9"
+  }
 }
