@@ -4,7 +4,7 @@ import CurrentUserContext from "../contexts/current-user-context";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
-
+import StatsChart from "../components/Stats";
 export default function UserPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -26,27 +26,38 @@ export default function UserPage() {
   const handleLogout = async () => {
     logUserOut();
     setCurrentUser(null);
-    navigate('/');
+    navigate("/");
   };
 
-  if (error) return <p>Sorry, there was a problem loading user. Please try again later.</p>;
+  if (error)
+    return (
+      <p>Sorry, there was a problem loading user. Please try again later.</p>
+    );
 
   if (!userProfile) return null;
 
   // When we update the username, the userProfile state won't change but the currentUser state will.
-  const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
+  const profileUsername = isCurrentUserProfile
+    ? currentUser.username
+    : userProfile.username;
 
-  return <>
-    <h1>{profileUsername}</h1>
-    <p>If the user had any data, here it would be</p>
-    <p>Fake Bio or something</p>
-    {
-      isCurrentUserProfile ? (
+  return (
+    <>
+      <h1>{profileUsername}</h1>
+      <p>If the user had any data, here it would be</p>
+      <p>Fake Bio or something</p>
+      {isCurrentUserProfile ? (
         <>
-          <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          <UpdateUsernameForm
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
           <button onClick={handleLogout}>Log Out</button>
         </>
-      ) : ''
-    }
-  </>;
+      ) : (
+        ""
+      )}
+      <StatsChart userId={id} />
+    </>
+  );
 }

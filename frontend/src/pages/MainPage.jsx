@@ -3,7 +3,8 @@ import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
 import PostsModal from "../components/PostsModal";
-
+import StatsChart from "../components/Stats";
+import CountdownTimer from "../components/Timer";
 export default function MainPage() {
   const [entry, setEntry] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -75,7 +76,7 @@ export default function MainPage() {
       {postsModal && <PostsModal onClose={handlePostClose} />}
       <GoalsForm log={log} />
       <div>
-        <p> timer</p>
+        <CountdownTimer />
       </div>
       {/* end of goals/ start of journals */}
       <div>
@@ -92,8 +93,9 @@ export default function MainPage() {
         {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error */}
       </div>
       <button onClick={handlePostOpen}>Replace with Icon</button>
-      <div>
-        <p> stats</p>
+      <br></br>
+      <div id="stats">
+        <StatsChart />
       </div>
     </>
   );
