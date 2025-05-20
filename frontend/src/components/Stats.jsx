@@ -24,7 +24,7 @@ import CurrentUserContext from "../contexts/current-user-context";
 // console.log(log[0].screentime);
 // console.log(getGoals.goal_num(2));
 // console.log(getGoals.screentime(2));
-const goals = await getGoals(1);
+const goals = await getGoals(2);
 console.log(goals[0]);
 
 //import that data that you are pulling from on this line
@@ -62,46 +62,49 @@ const labels = [
 ];
 
 ///
-export default function StatsChart() {
+export default function StatsChart({ userId }) {
   // const { id } = useParams();
   // const { currentUser } = useContext(CurrentUserContext);
   // // const isCurrentUserProfile = currentUser && currentUser.id === Number(id);
   // //
-  // // const [data, setData] = useState([]);
-  // const [log, setLog] = useState([]);
-  // const [goal, setGoal] = useState([]);
-  // // const [error, setError] = useState(null);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setGoal(goals);
-  //     } catch (err) {
-  //       console.error("Failed to fetch goal data:", err);
-  //     }
-  //   };
+  const [data, setData] = useState([]);
+  const [log, setLog] = useState([]);
+  const [goal, setGoal] = useState([]);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const goal = await getGoals(userId);
+        setGoal(goals);
+      } catch (err) {
+        console.error("Failed to fetch goal data:", err);
+      }
+    };
 
-  //   fetchData();
-  // }, [id]);
+    fetchData();
+  }, []);
   // //
-  // const screenTimeData = Array.isArray(goal)
-  //   ? goal.map((g) => g.screentime)
-  //   : [goal?.screentime];
+  const screenTimeData = Array.isArray(goal)
+    ? goal.map((g) => g.screentime)
+    : [goal?.screentime];
 
-  // const goalNumData = Array.isArray(goal)
-  //   ? goal.map((g) => g.goal_num)
-  //   : [goal?.goal_num];
+  const goalNumData = Array.isArray(goal)
+    ? goal.map((g) => g.goal_num)
+    : [goal?.goal_num];
 
+  console.log(screenTimeData);
+  console.log(goalNumData);
   const statsData = {
     labels,
     datasets: [
       {
         label: "Screen Time",
-        // data:
+        data: screenTimeData,
         backgroundColor: "rgb(255, 99, 132)",
       },
       {
         label: "Goal",
-        // data:
+        data: goalNumData,
         backgroundColor: "rgb(53, 162, 235)",
       },
     ],
