@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  scales,
 } from "chart.js";
 import { getLog } from "../adapters/log-adapter";
 import { getGoals } from "../adapters/goal-adapter";
@@ -47,6 +48,19 @@ const options = {
     title: {
       display: true,
       text: "Weekly Screen Time",
+    },
+  },
+  scales: {
+    y: {
+      max: 24,
+      title: {
+        display: true,
+        text: "Hours",
+      },
+      // ticks: {
+      //   stepSize: 1,
+      //   autoSkip: false,
+      // },
     },
   },
 };

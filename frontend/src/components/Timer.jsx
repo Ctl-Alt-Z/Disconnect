@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import SignOut from "./SignoutModal";
 import CurrentUserContext from "../contexts/current-user-context";
 
 export default function CountdownTimer() {
-  const [seconds, setSeconds] = useState(3600);
+  const [seconds, setSeconds] = useState(3600); // 1 hour in seconds
   const [disableWebsite, setDisableWebsite] = useState(false);
   const [timer, setTimer] = useState();
   const navigate = useNavigate();
   const { setCurrentUser } = useContext(CurrentUserContext);
 
+  console.log(CurrentUserContext);
   useEffect(() => {
     const timer = setInterval(() => {
       if (seconds > 0) {
@@ -19,7 +19,9 @@ export default function CountdownTimer() {
         clearInterval(timer);
         setCurrentUser(null); //log out the user
         navigate("/"); //take user to the home page
-        alert("Time's up!");
+        alert(
+          `Hi that is all the time you have available for Disconnect Today! Please come back Tomorrow !`
+        );
         // setDisableWebsite(true);
         <SignOut true={true} />;
       }
