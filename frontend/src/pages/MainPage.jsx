@@ -1,15 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import CurrentUserContext from "../contexts/current-user-context";
 import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
 import PostsModal from "../components/PostsModal";
-
+import StatsChart from "../components/Stats";
+import CountdownTimer from "../components/Timer";
 export default function MainPage() {
   const [entry, setEntry] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const [postsModal, setPostsModal] = useState(false);
   const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { id } = useParams();
 
   useEffect(() => {
     const checkStatus = async () => {
@@ -74,8 +79,9 @@ export default function MainPage() {
       {showModal && <Preferences setLog={setLog} onClose={handleClose} />}
       {postsModal && <PostsModal onClose={handlePostClose} />}
       <GoalsForm log={log} />
+
       <div>
-        <p> timer</p>
+        <CountdownTimer />
       </div>
       {/* end of goals/ start of journals */}
       <div>
@@ -92,8 +98,9 @@ export default function MainPage() {
         {error && <p style={{ color: "red" }}>{error}</p>} {/* Display error */}
       </div>
       <button onClick={handlePostOpen}>Replace with Icon</button>
-      <div>
-        <p> stats</p>
+      <br></br>
+      <div id="stats">
+        <StatsChart />
       </div>
     </>
   );
