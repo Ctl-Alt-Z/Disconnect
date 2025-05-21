@@ -19,9 +19,16 @@ class Favorite {
 
   static async findByUserId(userId) {
     const query = `
-        SELECT *
-        FROM favorites
-        WHERE user_id = ?;
+        SELECT 
+      favorites.id, 
+      favorites.user_id, 
+      favorites.posts_id, 
+      posts.message, 
+      users.username
+    FROM favorites
+    JOIN posts ON favorites.posts_id = posts.id
+    JOIN users ON posts.user_id = users.id
+    WHERE favorites.user_id = ?
         `;
     const { rows } = await knex.raw(query, [userId]);
     return rows;
