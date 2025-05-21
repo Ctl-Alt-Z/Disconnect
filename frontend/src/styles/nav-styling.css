@@ -1,0 +1,95 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
+	background: transparent !important;
+	width: 95%;
+	margin-left: 10px;
+}
+
+#logo {
+	margin-bottom: 10px;
+	font-family: 'Instrument Serif' !important;
+	font-size: 2.5rem;
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.logo:hover {
+	color: var(--accent);
+}
+
+.hamburger {
+	width: 40px;
+	height: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background: transparent; /* remove white background */
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	z-index: 1000; /* keep it above other content */
+}
+
+.hamburger span {
+	height: 3px;
+	width: 100%;
+	background-color: #333; /* or white if your background is dark */
+	border-radius: 2px;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+	transform: rotate(45deg) translateY(15px);
+}
+
+.hamburger.active span:nth-child(2) {
+	opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+	transform: rotate(-45deg) translateY(-15px);
+}
+
+/* hamburger contents. */
+.nav-menu-horizontal {
+	top: 1rem;
+	right: 3.5rem; /* adjust based on hamburger width */
+	border-radius: 0px;
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.3s ease;
+	z-index: 999;
+	font-size: var(--font-lg);
+	font-weight: 600;
+	margin-right: 2rem;
+}
+
+.nav-menu-horizontal.open {
+	transform: scaleX(1);
+}
+
+.nav-menu-horizontal ul {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	margin: 0;
+	gap: 1rem;
+}
+
+.nav-menu-horizontal li a {
+	text-decoration: none;
+	color: #333;
+	font-size: 1rem;
+	transition: color 0.2s;
+}
+
+.nav-menu-horizontal li a:hover {
+	color: var(--accent);
+}

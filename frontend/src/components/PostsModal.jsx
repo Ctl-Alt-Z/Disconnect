@@ -20,21 +20,37 @@ export default function PostsModal({ onClose }) {
 
 	return (
 		<>
-			<div className="post-modal">
-				<h2>Create a post</h2>
-				<form action="" onSubmit={handleSubmit}>
-					<textarea
-						value={message}
-						onChange={(e) => setMessage(e.target.value)}
-						placeholder="Write your post here..."
-					/>
-					{error && <p className="error">{error}</p>}
-					<button type="submit">Post</button>
-
-					<button type="button" onClick={onClose}>
-						cancel
-					</button>
-				</form>
+			<div className="postmodal-div">
+				<div className="post-modal">
+					<h2 id="post-title">Create a post</h2>
+					<form className="post-form" action="" onSubmit={handleSubmit}>
+						<textarea
+							id="post-textarea"
+							value={message}
+							onChange={(e) => setMessage(e.target.value)}
+							placeholder="Share your achivements with the community..."
+						/>
+						{error && <p className="error">{error}</p>}
+						<div className="post-buttons">
+							<button id="post-submit" type="submit">
+								<img
+									width="35"
+									height="35"
+									src="https://img.icons8.com/ios/50/FFFFFF/paper-plane--v1.png"
+									alt="paper-plane--v1"
+								/>
+							</button>
+							<button id="cancel-post" type="button" onClick={onClose}>
+								<img
+									width="40"
+									height="40"
+									src="https://img.icons8.com/wired/64/FFFFFF/cancel--v1.png"
+									alt="cancel--v1"
+								/>
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</>
 	);
