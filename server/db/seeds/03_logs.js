@@ -77,5 +77,54 @@ exports.seed = async function (knex) {
       entry:
         "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
     },
+    {
+      screentime: 8,
+      user_id: 11,
+      date: "2025-05-13",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
+    {
+      screentime: 6,
+      user_id: 11,
+      date: "2025-05-15",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
+    {
+      screentime: 11,
+      user_id: 11,
+      date: "2025-05-16",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
+    {
+      screentime: 5,
+      user_id: 11,
+      date: "2025-05-17",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
+    {
+      screentime: 6,
+      user_id: 11,
+      date: "2025-05-18",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
+    {
+      screentime: 4,
+      user_id: 11,
+      date: "2025-05-19",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
+    {
+      screentime: 7,
+      user_id: 11,
+      date: "2025-05-20",
+      entry:
+        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+    },
   ]);
 };

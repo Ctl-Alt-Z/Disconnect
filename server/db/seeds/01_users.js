@@ -81,13 +81,7 @@ exports.seed = async (knex) => {
     "sarah.olson@example.com",
     "Ols0nS@rah25"
   );
-  await User.create(
-    "Lena",
-    "Whitmore",
-    "LWhitmore",
-    "lena.whitmore@example.com",
-    "LoveLife@30"
-  );
+  await User.create("abcd", "a", "TMarshall", "abcd@gmail.com", "LoveLife@30");
   await User.create(
     "Travis",
     "Callahan",
