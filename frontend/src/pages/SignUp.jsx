@@ -50,7 +50,7 @@ export default function SignUpPage() {
 
 		setCurrentUser(user);
 
-		navigate('/mainpage');
+		navigate('/dashboard');
 	};
 
 	const handleChange = (event) => {

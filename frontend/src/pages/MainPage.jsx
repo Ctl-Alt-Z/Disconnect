@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Preferences from '../components/Preferences';
 import { updateEntry, todaysEntry, getLog } from '../adapters/log-adapter';
 import { useParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import GoalsForm from '../components/GoalForm';
 import PostsModal from '../components/PostsModal';
 import StatsChart from '../components/Stats';
 import CountdownTimer from '../components/Timer';
+import '../styles/dashboard-page.css';
 
 export default function MainPage() {
 	const [entry, setEntry] = useState('');
@@ -14,10 +15,9 @@ export default function MainPage() {
 	const [error, setError] = useState('');
 	const [postsModal, setPostsModal] = useState(false);
 	const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
-	const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-	const { id } = useParams();
+	const { currentUser } = useContext(CurrentUserContext);
 
-	console.log(currentUser);
+	// console.log(currentUser);
 	useEffect(() => {
 		const checkStatus = async () => {
 			try {
@@ -61,7 +61,7 @@ export default function MainPage() {
 		if (error) {
 			return setError(error.message);
 		}
-		setEntry(ent.value);
+		setEntry(ent.entry);
 		console.log('Entry updated successfully:', ent);
 	};
 

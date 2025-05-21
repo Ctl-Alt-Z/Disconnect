@@ -26,7 +26,7 @@ export default function LoginPage() {
 		console.log('test', user);
 		setSeconds(3600);
 		setCurrentUser(user);
-		navigate(`/mainpage`);
+		navigate(`/dashboard`);
 	};
 
 	return (
