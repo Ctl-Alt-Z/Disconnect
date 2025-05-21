@@ -82,49 +82,48 @@ exports.seed = async function (knex) {
       user_id: 11,
       date: "2025-05-13",
       entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+        "I missed my goal by 3 hours today. I was spending more time on the phone then I should have. I need to do better.",
     },
     {
       screentime: 6,
       user_id: 11,
       date: "2025-05-15",
       entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+        "I missed my goal yesterday so I gave myself some leeway and I reached my goal. I spent 3 hours less on my phone. ",
     },
     {
       screentime: 11,
       user_id: 11,
       date: "2025-05-16",
       entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+        "This goal was really ambitious. I missed my goal, i went over by 8 hours LOL. I cant believe this.",
     },
     {
       screentime: 5,
       user_id: 11,
       date: "2025-05-17",
-      entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+      entry: "I meet my goal today!!! Right on the money with 5 hours.",
     },
     {
       screentime: 6,
       user_id: 11,
       date: "2025-05-18",
       entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+        "Today i went over my goal by one hour. I was watching a show and lost track of time.",
     },
     {
       screentime: 4,
       user_id: 11,
       date: "2025-05-19",
       entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+        "It was a good day. I reached my goal and i made it with 3 hours to spare. I distracted myself with doing my nails",
     },
     {
       screentime: 7,
       user_id: 11,
       date: "2025-05-20",
       entry:
-        "I've been doing really well with this challenge. My goal is to get down to an hour of screen time.",
+        "LOL. I went over my goal by 3 hours today. I have to find a balance between my phone and life. Sometimes im on my phone to much and sometimes im not on it enough.",
     },
   ]);
 };
