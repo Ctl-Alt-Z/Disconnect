@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { favorites } from "../adapters/fav-adapters";
 export default function Favs({ userId }) {
   const [favPost, setFavPost] = useState([]);
 
   useEffect(() => {
     const loadFavs = async () => {
       try {
-        const favPosts = await getfavs(userId);
+        const favPosts = await favorites(userId);
         setFavPost(favPosts);
       } catch (err) {
         console.error("failed to fetch favorites", err);

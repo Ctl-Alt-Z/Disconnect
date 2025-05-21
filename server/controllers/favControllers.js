@@ -1,7 +1,7 @@
 const Favorite = require("../models/Favorites");
 
 const createFavorite = async (req, res) => {
-  const { postId } = req.params;
+  const { postId } = req.body;
   const userId = req.session.userId; // Assuming user ID is stored in the session
 
   if (postId === undefined || userId === undefined) {
