@@ -25,22 +25,9 @@ class Goal {
     `;
     const result = await knex.raw(query, [userId]);
     const rawGoalDataArray = result.rows;
-    return rawGoalDataArray;
-    // const goalsArray = rawGoalDataArray.map(
-    //   (rawGoalData) => new Goal(rawGoalData)
-    // );
-    // return goalsArray;
-  }
 
-  //   static async findById(id) {
-  //     const query = `SELECT goal_id, goal_num, goal_string, logs.id
-  //     FROM goal
-  //     JOIN logs
-  //     ON logs.id = goals.logs_id`;
-  //     const result = await knex.raw(query, [id]);
-  //     const rawGoalData = result.rows[0];
-  //     return rawGoalData ? new Goal(rawGoalData) : null;
-  //   }
+    return rawGoalDataArray;
+  }
 }
 
 module.exports = Goal;

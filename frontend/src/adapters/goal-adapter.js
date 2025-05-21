@@ -6,11 +6,12 @@ export const createGoals = async ({ goal_num, goal_string, logs_id }) => {
     getPostOptions({ goal_num, goal_string, logs_id })
   );
 };
+
 export const getGoals = async (id) => {
   try {
     const [allGoals, error] = await fetchHandler(`/api/goals/${id}`);
     if (error) {
-      console.error("Error fetching stata:", error.message);
+      console.error("Error fetching stats:", error.message);
       return [];
     }
     console.log(allGoals);
