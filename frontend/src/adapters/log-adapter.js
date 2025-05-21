@@ -23,7 +23,6 @@ export const todaysEntry = async () => {
       credentials: "include",
       headers: { "Content-Type": "application/json" },
     });
-    console.log("todaysEntry response:", response);
     return response;
   } catch (error) {
     console.error("Error fetching today's entry:", error.message);
@@ -39,6 +38,5 @@ export const getLog = async () => {
   if (error) {
     console.error("Error checking log status:", error.message);
   }
-  console.log("getLog response:", response);
   return response;
 };

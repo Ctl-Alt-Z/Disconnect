@@ -13,10 +13,12 @@ import TeamPage from './pages/team';
 // import PreferencesPage from './pages/Preferences';
 import MainPage from './pages/MainPage';
 import PostPage from './pages/PostPage';
+import { useNavigate } from 'react-router-dom';
 
 export default function App() {
 	const location = useLocation();
-	const { setCurrentUser } = useContext(UserContext);
+	const { setCurrentUser, setSeconds, seconds } = useContext(UserContext);
+	const navigate = useNavigate();
 	useEffect(() => {
 		const loadCurrentUser = async () => {
 			// we aren't concerned about an error happening here
@@ -25,6 +27,26 @@ export default function App() {
 		};
 		loadCurrentUser();
 	}, [setCurrentUser]);
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			if (seconds > 0) {
+				setSeconds(seconds - 1);
+				// console.log(seconds);
+			} else {
+				clearInterval(timer);
+				setCurrentUser(null); //log out the user
+				navigate('/'); //take user to the home page
+				alert(
+					`Hi that is all the time you have available for Disconnect Today! Please come back Tomorrow !`
+				);
+				// setDisableWebsite(true);
+				// <SignOut true={true} />;
+			}
+		}, 1000);
+
+		return () => clearInterval(timer); // Cleanup on unmount
+	}, [seconds]);
 
 	useEffect(() => {
 		if (location.pathname === '/dashboard') {

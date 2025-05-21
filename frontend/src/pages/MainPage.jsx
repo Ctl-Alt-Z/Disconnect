@@ -1,20 +1,21 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Preferences from '../components/Preferences';
 import { updateEntry, todaysEntry, getLog } from '../adapters/log-adapter';
+import { useParams } from 'react-router-dom';
+import CurrentUserContext from '../contexts/current-user-context';
 import GoalsForm from '../components/GoalForm';
 import PostsModal from '../components/PostsModal';
-import CurrentUserContext from '../contexts/current-user-context';
-import '../styles/dashboard-page.css';
-import userIcon from '../assets/user-icon.png';
-import pen from '../assets/pen-nib.png';
+import StatsChart from '../components/Stats';
+import CountdownTimer from '../components/Timer';
 
 export default function MainPage() {
-	const { currentUser } = useContext(CurrentUserContext);
 	const [entry, setEntry] = useState('');
 	const [showModal, setShowModal] = useState(false);
 	const [error, setError] = useState('');
 	const [postsModal, setPostsModal] = useState(false);
 	const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
+	const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+	const { id } = useParams();
 
 	console.log(currentUser);
 	useEffect(() => {
@@ -85,7 +86,7 @@ export default function MainPage() {
 				{showModal && <Preferences setLog={setLog} onClose={handleClose} />}
 				{postsModal && <PostsModal onClose={handlePostClose} />}
 				<div className="timer">
-					<p> timer</p>
+					<CountdownTimer />
 				</div>
 				<div className="mainpage-style">
 					<GoalsForm log={log} />
@@ -117,7 +118,7 @@ export default function MainPage() {
 						{/* Display error */}
 					</div>
 					<div className="right">
-						<p> stats</p>
+						<StatsChart />
 					</div>
 				</div>
 				<div className="bottom-buttons">

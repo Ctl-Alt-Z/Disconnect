@@ -10,7 +10,8 @@ export default function LoginPage() {
 	const [errorText, setErrorText] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+	const { currentUser, setCurrentUser, setSeconds } =
+		useContext(CurrentUserContext);
 	// users shouldn't be able to see the login page if they are already logged in.
 	// if the currentUser exists in the context, navigate the user to
 	// the /users/:id page for that user, using the currentUser.id value
@@ -22,7 +23,8 @@ export default function LoginPage() {
 
 		const [user, error] = await logUserIn({ username, password });
 		if (error) return setErrorText(error.message);
-
+		console.log('test', user);
+		setSeconds(3600);
 		setCurrentUser(user);
 		navigate(`/mainpage`);
 	};
