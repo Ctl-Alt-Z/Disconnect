@@ -88,7 +88,7 @@ app.get("/api/posts", checkAuthentication, serveAllPosts);
 app.post("/api/posts", checkAuthentication, createPost);
 // app.patch("/api/posts/:id", checkAuthentication, updatePost);
 app.delete("/api/posts/:id", checkAuthentication, deletePost);
-//app.get("/api/users/:id/posts", servePostsByUserId);
+app.get("/api/users/:id/posts", servePostsByUserId);
 // app.delete("/api/users/:id/posts", deleteAllPostsByUserId);
 
 ///////////////////////////////

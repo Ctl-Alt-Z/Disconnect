@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import CurrentUserContext from "../contexts/current-user-context";
 import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
@@ -11,6 +13,8 @@ export default function MainPage() {
   const [error, setError] = useState("");
   const [postsModal, setPostsModal] = useState(false);
   const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { id } = useParams();
 
   useEffect(() => {
     const checkStatus = async () => {
@@ -75,6 +79,7 @@ export default function MainPage() {
       {showModal && <Preferences setLog={setLog} onClose={handleClose} />}
       {postsModal && <PostsModal onClose={handlePostClose} />}
       <GoalsForm log={log} />
+
       <div>
         <CountdownTimer />
       </div>

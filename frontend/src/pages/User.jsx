@@ -4,7 +4,10 @@ import CurrentUserContext from "../contexts/current-user-context";
 import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
-import StatsChart from "../components/Stats";
+import AllUsersPost from "../components/UserPost";
+import StatsChart from "../components/UserStats";
+import Favs from "../components/favorites";
+
 export default function UserPage() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -57,7 +60,9 @@ export default function UserPage() {
       ) : (
         ""
       )}
-      <StatsChart userId={id} />
+      <AllUsersPost userId={id} />
+      {/* <StatsChart userId={id} /> */}
+      <Favs userId={id} />
     </>
   );
 }
