@@ -41,33 +41,42 @@ export default function GoalsForm({ log }) {
 	return (
 		<>
 			<div className="goal-component">
-				<h1 className="goal-title">Create a New Goal</h1>
+				{/* <h1 className="goal-title">Create a New Goal</h1> */}
 				<form onSubmit={handleGoalSubmit} aria-labelledby="goal-heading">
-					<h2 id="goal-heading">Set Your Goal</h2>
+					<h2 id="goal-heading">What's your next screentime goal?</h2>
+					<div className="input-div">
+						<label id="goal-label" htmlFor="goal">
+							Screentime (to the nearest hour) :
+						</label>
+						<input
+							type="number"
+							id="goalnum-input"
+							name="goal"
+							autoComplete="off"
+							value={goalNum}
+							onChange={handleChange}
+							required
+						/>
+					</div>
+					<div className="gstring-div">
+						<label id="string-input" htmlFor="description">
+							{/* Goal Description: */}
+						</label>
+						<input
+							type="text"
+							id="description"
+							name="description"
+							autoComplete="off"
+							placeholder="Your goal description..."
+							value={goalStr}
+							onChange={handleChange}
+							required
+						/>
 
-					<label htmlFor="goal">Hourly Goal</label>
-					<input
-						type="number"
-						id="goal"
-						name="goal"
-						autoComplete="off"
-						value={goalNum}
-						onChange={handleChange}
-						required
-					/>
-
-					<label htmlFor="description">Goal Description</label>
-					<input
-						type="text"
-						id="description"
-						name="description"
-						autoComplete="off"
-						value={goalStr}
-						onChange={handleChange}
-						required
-					/>
-
-					<button type="submit">Submit Goal</button>
+						<button id="goal-submit" type="submit">
+							Submit Goal
+						</button>
+					</div>
 				</form>
 
 				{!!errorText && <p style={{ color: 'red' }}>{errorText}</p>}
