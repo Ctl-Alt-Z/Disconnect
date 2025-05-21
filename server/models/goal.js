@@ -25,11 +25,11 @@ class Goal {
     `;
     const result = await knex.raw(query, [userId]);
     const rawGoalDataArray = result.rows;
-    // return rawGoalDataArray;
-    const goalsArray = rawGoalDataArray.map(
-      (rawGoalData) => new Goal(rawGoalData)
-    );
-    return goalsArray;
+    return rawGoalDataArray;
+    // const goalsArray = rawGoalDataArray.map(
+    //   (rawGoalData) => new Goal(rawGoalData)
+    // );
+    // return goalsArray;
   }
 
   //   static async findById(id) {

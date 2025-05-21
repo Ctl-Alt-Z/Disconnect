@@ -5,6 +5,8 @@ import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
 import AllUsersPost from "../components/UserPost";
+import StatsChart from "../components/Stats";
+import Favs from "../components/favorites";
 
 export default function UserPage() {
   const navigate = useNavigate();
@@ -59,6 +61,8 @@ export default function UserPage() {
         ""
       )}
       <AllUsersPost userId={id} />
+      {/* <StatsChart userId={id} /> */}
+      <Favs userId={id} />
     </>
   );
 }
