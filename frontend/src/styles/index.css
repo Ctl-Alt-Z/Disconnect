@@ -1,5 +1,5 @@
 * {
-	font-family: 'Instrument Serif';
+	font-family: 'Instrument Serif', 'space-mono', 'open-sans';
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
@@ -98,6 +98,10 @@ body {
 	line-height: var(--line-height-base);
 	background: var(--background);
 	color: var(--text);
+}
+
+body.dashboard-body {
+	background-color: var(--primary);
 }
 
 .error {

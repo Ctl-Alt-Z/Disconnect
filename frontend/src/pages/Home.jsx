@@ -12,7 +12,7 @@ export default function HomePage() {
 			<h1 className="company">Disconnect.</h1>
 
 			<div className="text-box">
-				<p>
+				<p id="home-text">
 					Lets take the time to check-in and focus on ourselves we have
 					acknowledged that you have been on your phone too much. You have taken
 					the first step in improving your focus in coming here! Log your time,

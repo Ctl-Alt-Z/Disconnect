@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import SignUpPage from './pages/SignUp';
 import LoginPage from './pages/Login';
@@ -15,6 +15,7 @@ import MainPage from './pages/MainPage';
 import PostPage from './pages/PostPage';
 
 export default function App() {
+	const location = useLocation();
 	const { setCurrentUser } = useContext(UserContext);
 	useEffect(() => {
 		const loadCurrentUser = async () => {
@@ -24,6 +25,14 @@ export default function App() {
 		};
 		loadCurrentUser();
 	}, [setCurrentUser]);
+
+	useEffect(() => {
+		if (location.pathname === '/dashboard') {
+			document.body.className = 'dashboard-body';
+		} else {
+			document.body.className = '';
+		}
+	}, [location]);
 
 	return (
 		<>
@@ -37,7 +46,7 @@ export default function App() {
 					<Route path="/users/:id" element={<UserPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 					<Route path="/team" element={<TeamPage />} />
-					<Route path="/mainpage" element={<MainPage />} />
+					<Route path="/dashboard" element={<MainPage />} />
 					<Route path="/feed" element={<PostPage />} />
 				</Routes>
 			</main>

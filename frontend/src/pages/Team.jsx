@@ -10,7 +10,11 @@ export default function TeamPage() {
 			<h1 className="about-title">The Team</h1>
 			<div className="about-parent">
 				<div className="border">
-					<a href="https://www.linkedin.com/in/luis-g-abreu/">
+					<a
+						href="https://www.linkedin.com/in/luis-g-abreu/"
+						target="blank"
+						rel="noopener noreferrer"
+					>
 						<img src={luis} alt="Luis Abreu" />
 						<span className="name">Luis Abreu</span>
 					</a>

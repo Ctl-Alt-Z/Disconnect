@@ -5,7 +5,7 @@ import '../styles/nav-styling.css';
 export default function SiteHeadingAndNav() {
 	const { currentUser } = useContext(CurrentUserContext);
 	const [menuOpen, setMenuOpen] = useState(false);
-
+	// console.log(currentUser);
 	return (
 		<header className="header">
 			<div className="logo">
@@ -34,7 +34,7 @@ export default function SiteHeadingAndNav() {
 					{currentUser ? (
 						<>
 							<li>
-								<NavLink to="/MainPage" onClick={() => setMenuOpen(false)}>
+								<NavLink to="/dashboard" onClick={() => setMenuOpen(false)}>
 									Journal Entry
 								</NavLink>
 							</li>
