@@ -5,7 +5,7 @@ import Preferences from "../components/Preferences";
 import { updateEntry, todaysEntry, getLog } from "../adapters/log-adapter";
 import GoalsForm from "../components/GoalForm";
 import PostsModal from "../components/PostsModal";
-import StatsChart from "../components/Stats";
+import StatsChart from "../components/UserStats";
 
 export default function MainPage() {
   const [entry, setEntry] = useState("");

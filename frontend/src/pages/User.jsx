@@ -5,7 +5,7 @@ import { getUser } from "../adapters/user-adapter";
 import { logUserOut } from "../adapters/auth-adapter";
 import UpdateUsernameForm from "../components/UpdateUsernameForm";
 import AllUsersPost from "../components/UserPost";
-import StatsChart from "../components/Stats";
+import StatsChart from "../components/UserStats";
 import Favs from "../components/favorites";
 
 export default function UserPage() {
