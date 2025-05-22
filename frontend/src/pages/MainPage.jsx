@@ -15,7 +15,7 @@ export default function MainPage() {
 	const [error, setError] = useState('');
 	const [postsModal, setPostsModal] = useState(false);
 	const [log, setLog] = useState(null); // we use this now to check if we need to show modal. null means no log.
-	const { currentUser } = useContext(CurrentUserContext);
+	const { currentUser, seconds } = useContext(CurrentUserContext);
 
 	// console.log(currentUser);
 	useEffect(() => {
@@ -122,7 +122,10 @@ export default function MainPage() {
 					</div>
 				</div>
 				<div className="bottom-buttons">
-					<a id="profile-button" href={`/users/${currentUser.id}`}>
+					<a
+						id="profile-button"
+						href={`/users/${currentUser.id}?timer=${seconds}`}
+					>
 						<img
 							src="https://img.icons8.com/small/32/FFFFFF/user.png"
 							alt="user"

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CurrentUserContext from '../contexts/current-user-context';
 
 export default function CountdownTimer() {
-	// const [seconds, setSeconds] = useState(3600); // 1 hour in seconds
+	// const [seconds, setSeconds] = useState(1800); // 1 hour in seconds
 	const [disableWebsite, setDisableWebsite] = useState(false);
 	const [timer, setTimer] = useState();
 	const navigate = useNavigate();
@@ -33,14 +33,14 @@ export default function CountdownTimer() {
 
 	function formatTime(time) {
 		const hours = Math.floor(time / 3600);
-		const minutes = Math.floor((time % 3600) / 60);
+		const minutes = Math.floor((time % 1800) / 60);
 		const remainingSeconds = time % 60;
 
 		const formattedHours = String(hours).padStart(2, '0');
 		const formattedMinutes = String(minutes).padStart(2, '0');
 		const formattedSeconds = String(remainingSeconds).padStart(2, '0');
 
-		return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+		return `${formattedMinutes}:${formattedSeconds}`;
 	}
 
 	return (

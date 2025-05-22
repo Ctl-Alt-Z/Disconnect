@@ -24,7 +24,7 @@ export default function LoginPage() {
 		const [user, error] = await logUserIn({ username, password });
 		if (error) return setErrorText(error.message);
 		console.log('test', user);
-		setSeconds(3600);
+		setSeconds(1800);
 		setCurrentUser(user);
 		navigate(`/dashboard`);
 	};
