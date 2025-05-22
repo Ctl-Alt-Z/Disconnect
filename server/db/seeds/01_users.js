@@ -28,14 +28,14 @@ exports.seed = async (knex) => {
   await User.create(
     "John",
     "Smith",
-    "jsmith",
+    "jSmith",
     "john.smith@example.com",
     "SecurePass123!"
   );
   await User.create(
     "Ana",
     "Garcia",
-    "agarcia",
+    "aGarcia",
     "ana.garcia@example.com",
     "P@ssw0rd2025"
   );
@@ -70,7 +70,7 @@ exports.seed = async (knex) => {
   await User.create(
     "Kosei",
     "Yamamoto",
-    "kosei",
+    "koseiYami",
     "k.yamamoto@example.com",
     "Y@m@m0t0K"
   );
