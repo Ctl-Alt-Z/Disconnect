@@ -29,24 +29,38 @@ export default function App() {
 	}, [setCurrentUser]);
 
 	useEffect(() => {
+		const params = new URLSearchParams(location.search);
+		const timerValue = params.get('timer');
+		if (timerValue) {
+			setSeconds(parseInt(timerValue, 10));
+		}
+
 		const timer = setInterval(() => {
 			if (seconds > 0) {
-				setSeconds(seconds - 1);
-				// console.log(seconds);
+				setSeconds((prevSeconds) => {
+					const updatedSeconds = prevSeconds - 1;
+
+					// Update the URL with the remaining timer value
+					const newParams = new URLSearchParams(location.search);
+					newParams.set('timer', updatedSeconds);
+					navigate(`${location.pathname}?${newParams.toString()}`, {
+						replace: true,
+					});
+
+					return updatedSeconds;
+				}); // console.log(seconds);
 			} else {
 				clearInterval(timer);
 				setCurrentUser(null); //log out the user
 				navigate('/'); //take user to the home page
-				alert(
-					`Hi that is all the time you have available for Disconnect Today! Please come back Tomorrow !`
-				);
+				alert(`Your time is up for today! Now go and seize the day!`);
 				// setDisableWebsite(true);
 				// <SignOut true={true} />;
 			}
 		}, 1000);
 
 		return () => clearInterval(timer); // Cleanup on unmount
-	}, [seconds]);
+	}, [seconds, setSeconds, setCurrentUser, navigate, location]);
 
 	useEffect(() => {
 		if (location.pathname === '/dashboard') {

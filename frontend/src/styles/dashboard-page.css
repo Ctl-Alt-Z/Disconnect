@@ -388,3 +388,18 @@
 #cancel-post:hover {
 	background-color: var(--accent);
 }
+
+.timer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+	width: 10%;
+	background-color: var(--background);
+	border-radius: 10px;
+	margin-left: 45%;
+}
+
+.timer:hover {
+	background-color: var(--accent);
+}
