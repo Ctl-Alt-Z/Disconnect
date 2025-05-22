@@ -32,7 +32,7 @@ export default function CountdownTimer() {
 	// }, [seconds]);
 
 	function formatTime(time) {
-		const hours = Math.floor(time / 1800);
+		const hours = Math.floor(time / 3600);
 		const minutes = Math.floor((time % 1800) / 60);
 		const remainingSeconds = time % 60;
 
