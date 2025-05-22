@@ -1,96 +1,133 @@
-import { useEffect, useState } from "react";
-import { getAllPosts } from "../adapters/post-adapter";
+import { useContext, useEffect, useState } from 'react';
+import CurrentUserContext from '../contexts/current-user-context';
+import { getAllPosts } from '../adapters/post-adapter';
+import '../styles/PostPage.css';
 import {
-  getFavoritesByPostId,
-  createFavorites,
-} from "../adapters/fav-adapters";
+	getFavoritesByPostId,
+	createFavorites,
+	deleteFavorite,
+} from '../adapters/fav-adapters';
 
-export default function Feed() {
-  const [allPosts, setAllPosts] = useState([]);
-  const [likes, setLikes] = useState({}); // store likes count per postId
-  const [likedPosts, setLikedPosts] = useState(new Set());
+export default function Posts() {
+	const { currentUser } = useContext(CurrentUserContext);
+	const [allPosts, setAllPosts] = useState([]);
+	const [likes, setLikes] = useState({});
+	const [likedPosts, setLikedPosts] = useState({});
+	const [loadingPosts, setLoadingPosts] = useState(new Set());
+	const [loading, setLoading] = useState(true); // Track loading state
 
-  useEffect(() => {
-    const fetchPostsAndLikes = async () => {
-      const posts = await getAllPosts();
-      setAllPosts(posts);
+	useEffect(() => {
+		if (!currentUser) return;
 
-      const likesMap = {};
-      const likedSet = new Set();
+		const fetchPostsAndLikes = async () => {
+			// Fetch all posts
+			const posts = await getAllPosts();
+			setAllPosts(posts);
 
-      await Promise.all(
-        posts.map(async (post) => {
-          const favorites = await getFavoritesByPostId({ postId: post.id });
+			const likesMap = {};
+			const likedMap = {};
 
-          likesMap[post.id] = favorites.length;
+			// Fetch likes and user favorites per post
+			await Promise.all(
+				posts.map(async (post) => {
+					const favorites = await getFavoritesByPostId({ postId: post.id });
+					likesMap[post.id] = favorites.length;
 
-          // Assume the backend only returns favorites for this post,
-          // including the current user's entry if they liked it.
-          const currentUserLiked = favorites.some(
-            (fav) => fav && fav.userId // if backend includes userId from session
-          );
+					const currentUserFavorite = favorites.find(
+						(fav) => fav && fav.user_id === currentUser.id
+					);
 
-          if (currentUserLiked) {
-            likedSet.add(post.id);
-          }
-        })
-      );
+					if (currentUserFavorite) {
+						likedMap[post.id] = currentUserFavorite.id;
+					}
+				})
+			);
 
-      setLikes(likesMap);
-      setLikedPosts(likedSet);
-    };
+			setLikes(likesMap);
+			setLikedPosts(likedMap);
+			setLoading(false); // Loading done
+		};
 
-    fetchPostsAndLikes();
-  }, []);
+		fetchPostsAndLikes();
+	}, [currentUser]);
 
-  const handleLike = async (postId) => {
-    const [result, error] = await createFavorites({
-      postId,
-    });
-    console.log(result);
+	const handleLikeToggle = async (postId) => {
+		if (!currentUser) return;
+		if (loadingPosts.has(postId)) return;
 
-    if (error) {
-      console.error("Error adding favorite:", error.message);
-      return;
-    }
+		setLoadingPosts((prev) => new Set(prev).add(postId));
 
-    // Optimistically update likes count
-    setLikes((prev) => ({
-      ...prev,
-      [postId]: (prev[postId] || 0) + 1,
-    }));
-    setLikedPosts((prev) => new Set(prev).add(postId));
-  };
+		if (likedPosts[postId]) {
+			const favoriteId = likedPosts[postId];
+			const [result, error] = await deleteFavorite(favoriteId);
 
-  return (
-    <>
-      <h1>Posts</h1>
-      <div>
-        {allPosts.length > 0 ? (
-          allPosts.map((post) => (
-            <div
-              key={post.id}
-              style={{
-                border: "1px solid #ccc",
-                margin: "10px",
-                padding: "10px",
-              }}
-            >
-              <h3>{post.username}</h3>
-              <p>{post.message}</p>
-              <button
-                onClick={() => handleLike(post.id)}
-                disabled={likedPosts.has(post.id)}
-              >
-                {likedPosts.has(post.id) ? "Liked 🌸" : "Flower 🌸"}
-              </button>
-              <p>{likes[post.id] || 0} Flower(s)</p>
-            </div>
-          ))
-        ) : (
-          <p>No posts available.</p>
-        )}
-      </div>
-    </>
-  );
+			if (!error) {
+				setLikes((prev) => ({
+					...prev,
+					[postId]: Math.max((prev[postId] || 1) - 1, 0),
+				}));
+				setLikedPosts((prev) => {
+					const copy = { ...prev };
+					delete copy[postId];
+					return copy;
+				});
+			}
+		} else {
+			const [result, error] = await createFavorites({ postId });
+
+			if (!error) {
+				setLikes((prev) => ({
+					...prev,
+					[postId]: (prev[postId] || 0) + 1,
+				}));
+				setLikedPosts((prev) => ({
+					...prev,
+					[postId]: result.id,
+				}));
+			}
+		}
+
+		setLoadingPosts((prev) => {
+			const copy = new Set(prev);
+			copy.delete(postId);
+			return copy;
+		});
+	};
+
+	return (
+		<>
+			<div className="posts-title-wrapper">
+				<h2 className="posts-title">Community Reflections</h2>
+			</div>
+
+			<div className="posts-scroll-container">
+				{loading && <p className="loading-message">Loading posts...</p>}
+
+				{!loading && allPosts.length === 0 && (
+					<p className="no-posts-message">No posts available.</p>
+				)}
+
+				{!loading &&
+					allPosts.length > 0 &&
+					allPosts.map((post) => {
+						const isLiked = !!likedPosts[post.id];
+						const isLoading = loadingPosts.has(post.id);
+						return (
+							<article key={post.id} className="post-card">
+								<h3 className="post-username">{post.username}</h3>
+								<p className="post-message">{post.message}</p>
+								<button
+									onClick={() => handleLikeToggle(post.id)}
+									disabled={isLoading}
+									className={`like-button ${isLiked ? 'liked' : ''}`}
+								>
+									{isLiked ? 'Liked 🌸' : 'Like 🌸'}
+								</button>
+								<p className="likes-count">{likes[post.id] || 0} Flower(s)</p>
+							</article>
+						);
+					})}
+			</div>
+		</>
+	);
 }
