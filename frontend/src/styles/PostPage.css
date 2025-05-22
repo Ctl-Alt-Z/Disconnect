@@ -1,0 +1,136 @@
+/* Root variables assumed imported or globally set */
+
+.posts-header {
+	position: sticky;
+	top: 0;
+	background: var(--background);
+	padding: var(--padding-md);
+	border-bottom: 1px solid var(--border);
+	z-index: 1000;
+}
+
+.posts-title-wrapper {
+	padding: 1rem 1rem 0.5rem;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	background-color: var(--background);
+}
+
+.posts-title {
+	font-size: 28px; /* bigger */
+	font-weight: 700; /* bolder */
+	font-family: 'Helvetica Neue', sans-serif;
+	color: black; /* base color changed */
+	margin: 0;
+	transition: color 0.3s ease, transform 0.3s ease;
+	cursor: pointer;
+}
+
+.posts-title:hover {
+	color: var(--primary);
+	transform: scale(1.15); /* grow on hover */
+}
+
+.posts-scroll-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: var(--padding-md);
+
+	/* Fill remaining vertical space below nav + title (adjust 120px as needed) */
+	height: calc(100vh - 120px);
+	overflow-y: auto;
+
+	scrollbar-width: thin;
+	scrollbar-color: var(--primary) var(--background);
+}
+
+.posts-scroll-container::-webkit-scrollbar {
+	width: 8px;
+}
+
+.posts-scroll-container::-webkit-scrollbar-track {
+	background: var(--background);
+}
+
+.posts-scroll-container::-webkit-scrollbar-thumb {
+	background-color: var(--primary);
+	border-radius: var(--radius-md);
+	border: 2px solid var(--background);
+}
+
+.post-card {
+	background-color: var(--background);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	padding: var(--padding-md);
+	margin-bottom: var(--gap-md);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	transition: border-color 0.3s ease, transform 0.3s ease;
+	cursor: pointer;
+}
+
+.post-card:hover {
+	border-color: var(--accent);
+	transform: translateY(-6px); /* pop up effect */
+}
+
+.post-username {
+	margin: 0 0 var(--gap-xs) 0;
+	font-weight: 700;
+	color: var(--primary);
+	font-family: 'Instrument Serif', serif;
+	font-size: var(--font-lg);
+}
+
+.post-message {
+	font-size: var(--font-base);
+	margin-bottom: var(--gap-sm);
+	line-height: var(--line-height-base);
+}
+
+.like-button {
+	background-color: transparent;
+	border: 1px solid var(--primary);
+	color: var(--primary);
+	padding: var(--padding-xs) var(--padding-sm);
+	border-radius: var(--radius-sm);
+	font-size: var(--font-sm);
+	transition: all 0.3s ease;
+}
+
+.like-button:hover:not(:disabled) {
+	background-color: var(--primary);
+	color: var(--background);
+}
+
+.like-button:disabled {
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+.like-button.liked {
+	background-color: var(--primary);
+	color: var(--background);
+	border-color: var(--primary);
+}
+
+.likes-count {
+	margin-top: var(--gap-xs);
+	font-size: var(--font-xs);
+	color: black;
+}
+
+.no-posts-message {
+	color: var(--danger);
+	text-align: center;
+	padding: var(--padding-md);
+	font-style: italic;
+}
+
+.loading-message {
+	color: var(--primary);
+	text-align: center;
+	padding: var(--padding-md);
+	font-style: italic;
+}

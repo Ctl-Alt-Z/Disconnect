@@ -1,0 +1,127 @@
+.page-div {
+	display: flex;
+	flex-direction: column;
+}
+
+#user-username {
+	margin-top: 2%;
+	font-size: var(--font-4xl);
+	text-decoration: underline;
+	font-weight: 600;
+	color: var(--primary);
+}
+
+.update-form {
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+	margin: 2%;
+}
+
+#username-up {
+	width: 20%;
+	font-size: var(--font-lg);
+	padding: 1%;
+	margin-bottom: 1%;
+	border-radius: 10px;
+}
+
+#button-update {
+	width: 6%;
+	padding: 1%;
+	border-radius: 10px;
+	border-radius: 10px;
+	border-color: transparent;
+	background-color: var(--primary);
+	color: white;
+}
+#button-update:hover {
+	background-color: var(--accent);
+}
+
+.button-userLogout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#update-logout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 40px;
+	padding: 1%;
+	border-radius: 10px;
+	border-color: transparent;
+	background-color: var(--primary);
+	color: white;
+}
+
+#update-logout:hover {
+	background-color: var(--accent);
+}
+
+#fav-title {
+	font-size: var(--font-2xl);
+}
+
+.user-content {
+	display: flex; /* Use flexbox for layout */
+	justify-content: space-between; /* Space between the two sections */
+	align-items: flex-start; /* Align items at the top */
+	margin: 20px; /* Add some spacing around the container */
+}
+
+#user-posts {
+	height: 283px;
+	width: 45%; /* Take up 45% of the container width */
+	background-color: var(
+		--background-light
+	); /* Optional: Add a background color */
+	padding: 20px; /* Add padding inside the section */
+	border-radius: 10px; /* Optional: Rounded corners */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+	overflow-y: auto;
+}
+
+#user-favorites {
+	height: 283px;
+	width: 45%; /* Take up 45% of the container width */
+	background-color: var(
+		--background-light
+	); /* Optional: Add a background color */
+	padding: 20px; /* Add padding inside the section */
+	border-radius: 10px; /* Optional: Rounded corners */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+	overflow-y: auto;
+}
+
+#posts-title,
+#fav-title {
+	text-align: center; /* Center the titles */
+	margin-bottom: 10px; /* Add spacing below the titles */
+	color: var(--primary); /* Use the primary color for the titles */
+}
+
+.userpage-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: 24%;
+}
+
+.user-scroll-container::-webkit-scrollbar {
+	width: 8px;
+}
+
+.user-scroll-container::-webkit-scrollbar-track {
+	background: var(--background);
+}
+
+.user-scroll-container::-webkit-scrollbar-thumb {
+	background-color: var(--primary);
+	border-radius: var(--radius-md);
+	border: 2px solid var(--background);
+}
