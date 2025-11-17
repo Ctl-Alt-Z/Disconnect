@@ -11,8 +11,12 @@ Our mission is to empower individuals to better understand, reflect on, and tran
   - Jose Correa: **Developer**
 ## Demo Link 
 https://youtu.be/KDVncvpiIuE
-
-
+## Project Screenshots 
+- dashboard
+<img width="2102" height="1204" alt="image" src="https://github.com/user-attachments/assets/ae382983-f700-4d24-9349-9c2892ffc44f" />
+- community reflections
+<img width="1898" height="1080" alt="image" src="https://github.com/user-attachments/assets/807bd0b0-0a4a-4232-80e0-8a1be11341bd" />
+  
 ## Table of Contents
 - [Getting Started](#getting-started)
   - [Build and Start Commands](#build-and-start-commands)
