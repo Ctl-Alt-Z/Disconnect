@@ -1,6 +1,7 @@
-# Project Name
+#  Disconnect
 
 > Project Mission Statement
+Our mission is to empower individuals to better understand, reflect on, and transform their digital habits. Through accessible tools, personal storytelling, and community-driven support, we aim to help users reclaim intentionality in their digital lives and build healthier relationships with technology
 
 ## Team
 
